@@ -1,0 +1,20 @@
+feature,domain,primary_compact_set,full_sensitivity_set,selection_reason,primary_order
+hba1c,Care process,False,True,HbA1c measurement completion; retained in full sensitivity set but not primary set because target-achievement HbA1c measure is more directly interpretable.,
+blood_pressure,Care process,False,True,Blood-pressure measurement completion; retained for sensitivity analysis.,
+cholesterol,Care process,False,True,"Cholesterol measurement completion; temporally unstable on both mean-shift and rank-stability evidence, therefore not selected for compact primary set.",
+serum_creatinine,Renal monitoring,True,True,Directly relevant renal-monitoring care process and retained in compact primary model.,2.0
+urine_albumin,Renal monitoring,True,True,Directly relevant renal-monitoring care process and retained in compact primary model.,1.0
+foot_surveillance,Care process,False,True,Relevant diabetes care process but not directly kidney-specific; retained for full sensitivity analysis.,
+bmi,Care process,False,True,BMI recording completion; retained in full sensitivity analysis rather than compact primary model.,
+smoking,Care process,False,True,Smoking-status recording completion; retained in full sensitivity analysis.,
+all_eight_care_processes,Composite care process,False,True,Broad composite measure with substantial temporal movement and overlap with individual care-process measures; not selected for compact primary set.,
+hba1c_le_48_mmol_mol_6_5pct,Glycaemic control,False,True,Highly correlated with neighbouring HbA1c thresholds; retained only in full sensitivity set.,
+hba1c_le_53_mmol_mol_7_0pct,Glycaemic control,False,True,Highly correlated with neighbouring HbA1c thresholds; retained only in full sensitivity set.,
+hba1c_le_58_mmol_mol_7_5pct,Glycaemic control,True,True,Selected as one representative HbA1c control threshold to avoid including multiple strongly redundant thresholds.,3.0
+hba1c_le_75_mmol_mol_9_0pct,Glycaemic control,False,True,Highly correlated with neighbouring HbA1c thresholds; retained only in full sensitivity set.,
+hba1c_le_86_mmol_mol_10_0pct,Glycaemic control,False,True,Highly correlated with neighbouring HbA1c thresholds; retained only in full sensitivity set.,
+blood_pressure_le_140_80,Blood-pressure control,True,True,Stable treatment-target measure with clear clinical interpretation; retained in compact primary model.,4.0
+primary_prevention_on_statins_without_cvd_history,Lipid management,False,True,Extremely highly correlated with combined statin measure; excluded from compact model to reduce redundancy.,
+secondary_prevention_on_statins_with_cvd_history,Lipid management,False,True,Very temporally stable but represents a narrower subgroup; retained in full sensitivity analysis.,
+combined_prevention_on_statins,Lipid management,True,True,Selected as broader representative statin-management measure while avoiding strong redundancy with primary-prevention statin measure.,5.0
+all_three_treatment_targets,Composite treatment control,False,True,Stable composite treatment-target measure but overlaps conceptually with individual HbA1c and blood-pressure targets; retained for sensitivity analysis.,
