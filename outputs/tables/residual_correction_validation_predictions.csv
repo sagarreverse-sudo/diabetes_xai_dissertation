@@ -1,0 +1,169 @@
+target_year,icb_code,icb_name,lagged_ckd_rate,actual_change,predicted_change,actual_ckd_rate,model,feature_set,alpha,prediction
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.9,-0.1,-0.3457,131.8,residual_linear,compact_5,,131.5543
+2022,QF7,NHS South Yorkshire ICB,136.6,1.8,-1.9229,138.4,residual_linear,compact_5,,134.6771
+2022,QGH,NHS Herefordshire and Worcestershire ICB,165.9,-1.2,-0.9178,164.7,residual_linear,compact_5,,164.9822
+2022,QH8,NHS Mid and South Essex ICB,128.1,23.2,19.6296,151.3,residual_linear,compact_5,,147.7296
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",126.7,6.3,6.1693,133.0,residual_linear,compact_5,,132.8693
+2022,QHL,NHS Birmingham and Solihull ICB,107.1,3.6,4.15,110.7,residual_linear,compact_5,,111.25
+2022,QHM,NHS North East and North Cumbria ICB,155.9,1.4,-1.1143,157.3,residual_linear,compact_5,,154.7857
+2022,QJ2,NHS Derby and Derbyshire ICB,163.6,-5.3,0.8602,158.3,residual_linear,compact_5,,164.4602
+2022,QJG,NHS Suffolk and North East Essex ICB,176.0,-5.6,-2.2354,170.4,residual_linear,compact_5,,173.7646
+2022,QJK,NHS Devon ICB,186.1,-7.7,2.7281,178.4,residual_linear,compact_5,,188.8281
+2022,QJM,NHS Lincolnshire ICB,168.3,-1.0,-5.8822,167.3,residual_linear,compact_5,,162.4178
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",135.8,-2.9,0.256,132.9,residual_linear,compact_5,,136.056
+2022,QKK,NHS South East London ICB,116.6,0.9,4.185,117.5,residual_linear,compact_5,,120.785
+2022,QKS,NHS Kent and Medway ICB,131.4,4.0,2.7445,135.4,residual_linear,compact_5,,134.1445
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.4,0.1,0.7475,146.5,residual_linear,compact_5,,147.1475
+2022,QMF,NHS North East London ICB,103.5,-2.3,1.0873,101.2,residual_linear,compact_5,,104.5873
+2022,QMJ,NHS North Central London ICB,114.5,5.0,0.0651,119.5,residual_linear,compact_5,,114.5651
+2022,QMM,NHS Norfolk and Waveney ICB,144.3,5.0,0.122,149.3,residual_linear,compact_5,,144.422
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,124.3,12.9,-0.791,137.2,residual_linear,compact_5,,123.509
+2022,QNQ,NHS Frimley ICB,124.3,-1.0,3.7603,123.3,residual_linear,compact_5,,128.0603
+2022,QNX,NHS Sussex ICB,160.6,-8.5,5.8565,152.1,residual_linear,compact_5,,166.4565
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",186.9,-13.2,3.7191,173.7,residual_linear,compact_5,,190.6191
+2022,QOP,NHS Greater Manchester ICB,125.2,-2.5,0.5813,122.7,residual_linear,compact_5,,125.7813
+2022,QOQ,NHS Humber and North Yorkshire ICB,168.9,-3.1,-0.7005,165.8,residual_linear,compact_5,,168.1995
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",147.1,4.6,3.424,151.7,residual_linear,compact_5,,150.524
+2022,QPM,NHS Northamptonshire ICB,133.2,-3.5,1.0336,129.7,residual_linear,compact_5,,134.2336
+2022,QR1,NHS Gloucestershire ICB,162.2,-8.8,2.9767,153.4,residual_linear,compact_5,,165.1767
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,123.9,17.6,10.3559,141.5,residual_linear,compact_5,,134.2559
+2022,QRV,NHS North West London ICB,95.2,5.9,1.1499,101.1,residual_linear,compact_5,,96.3499
+2022,QSL,NHS Somerset ICB,142.2,6.2,4.1185,148.4,residual_linear,compact_5,,146.3185
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,0.0,1.6092,140.3,residual_linear,compact_5,,141.9092
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,175.4,-9.2,2.7265,166.2,residual_linear,compact_5,,178.1265
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",135.5,-0.8,6.0086,134.7,residual_linear,compact_5,,141.5086
+2022,QUA,NHS Black Country ICB,137.7,-2.0,3.8717,135.7,residual_linear,compact_5,,141.5717
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,139.0,2.1,3.1308,141.1,residual_linear,compact_5,,142.1308
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",156.1,-7.5,8.5297,148.6,residual_linear,compact_5,,164.6297
+2022,QVV,NHS Dorset ICB,172.5,-3.7,4.0642,168.8,residual_linear,compact_5,,176.5642
+2022,QWE,NHS South West London ICB,117.6,-3.0,4.2093,114.6,residual_linear,compact_5,,121.8093
+2022,QWO,NHS West Yorkshire ICB,136.3,1.0,2.5895,137.3,residual_linear,compact_5,,138.8895
+2022,QWU,NHS Coventry and Warwickshire ICB,165.3,-19.5,-4.5999,145.8,residual_linear,compact_5,,160.7001
+2022,QXU,NHS Surrey Heartlands ICB,134.0,3.1,3.5284,137.1,residual_linear,compact_5,,137.5284
+2022,QYG,NHS Cheshire and Merseyside ICB,149.3,-4.4,-3.1481,144.9,residual_linear,compact_5,,146.1519
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.9,-0.1,23.8707,131.8,residual_linear,full_19,,155.7707
+2022,QF7,NHS South Yorkshire ICB,136.6,1.8,11.1468,138.4,residual_linear,full_19,,147.7468
+2022,QGH,NHS Herefordshire and Worcestershire ICB,165.9,-1.2,30.9779,164.7,residual_linear,full_19,,196.8779
+2022,QH8,NHS Mid and South Essex ICB,128.1,23.2,27.4039,151.3,residual_linear,full_19,,155.5039
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",126.7,6.3,14.2472,133.0,residual_linear,full_19,,140.9472
+2022,QHL,NHS Birmingham and Solihull ICB,107.1,3.6,10.2241,110.7,residual_linear,full_19,,117.3241
+2022,QHM,NHS North East and North Cumbria ICB,155.9,1.4,27.1499,157.3,residual_linear,full_19,,183.0499
+2022,QJ2,NHS Derby and Derbyshire ICB,163.6,-5.3,32.2091,158.3,residual_linear,full_19,,195.8091
+2022,QJG,NHS Suffolk and North East Essex ICB,176.0,-5.6,1.7,170.4,residual_linear,full_19,,177.7
+2022,QJK,NHS Devon ICB,186.1,-7.7,16.1351,178.4,residual_linear,full_19,,202.2351
+2022,QJM,NHS Lincolnshire ICB,168.3,-1.0,6.301,167.3,residual_linear,full_19,,174.601
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",135.8,-2.9,18.9094,132.9,residual_linear,full_19,,154.7094
+2022,QKK,NHS South East London ICB,116.6,0.9,7.7119,117.5,residual_linear,full_19,,124.3119
+2022,QKS,NHS Kent and Medway ICB,131.4,4.0,11.1095,135.4,residual_linear,full_19,,142.5095
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.4,0.1,12.0787,146.5,residual_linear,full_19,,158.4787
+2022,QMF,NHS North East London ICB,103.5,-2.3,20.9092,101.2,residual_linear,full_19,,124.4092
+2022,QMJ,NHS North Central London ICB,114.5,5.0,19.928,119.5,residual_linear,full_19,,134.428
+2022,QMM,NHS Norfolk and Waveney ICB,144.3,5.0,24.0226,149.3,residual_linear,full_19,,168.3226
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,124.3,12.9,23.2476,137.2,residual_linear,full_19,,147.5476
+2022,QNQ,NHS Frimley ICB,124.3,-1.0,17.9705,123.3,residual_linear,full_19,,142.2705
+2022,QNX,NHS Sussex ICB,160.6,-8.5,19.2939,152.1,residual_linear,full_19,,179.8939
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",186.9,-13.2,48.3505,173.7,residual_linear,full_19,,235.2505
+2022,QOP,NHS Greater Manchester ICB,125.2,-2.5,29.3038,122.7,residual_linear,full_19,,154.5038
+2022,QOQ,NHS Humber and North Yorkshire ICB,168.9,-3.1,28.8298,165.8,residual_linear,full_19,,197.7298
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",147.1,4.6,19.5194,151.7,residual_linear,full_19,,166.6194
+2022,QPM,NHS Northamptonshire ICB,133.2,-3.5,14.44,129.7,residual_linear,full_19,,147.64
+2022,QR1,NHS Gloucestershire ICB,162.2,-8.8,13.169,153.4,residual_linear,full_19,,175.369
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,123.9,17.6,26.8421,141.5,residual_linear,full_19,,150.7421
+2022,QRV,NHS North West London ICB,95.2,5.9,10.0981,101.1,residual_linear,full_19,,105.2981
+2022,QSL,NHS Somerset ICB,142.2,6.2,15.9538,148.4,residual_linear,full_19,,158.1538
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,0.0,15.4912,140.3,residual_linear,full_19,,155.7912
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,175.4,-9.2,-2.7469,166.2,residual_linear,full_19,,172.6531
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",135.5,-0.8,15.5657,134.7,residual_linear,full_19,,151.0657
+2022,QUA,NHS Black Country ICB,137.7,-2.0,16.2085,135.7,residual_linear,full_19,,153.9085
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,139.0,2.1,14.9045,141.1,residual_linear,full_19,,153.9045
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",156.1,-7.5,28.7315,148.6,residual_linear,full_19,,184.8315
+2022,QVV,NHS Dorset ICB,172.5,-3.7,11.6837,168.8,residual_linear,full_19,,184.1837
+2022,QWE,NHS South West London ICB,117.6,-3.0,15.3043,114.6,residual_linear,full_19,,132.9043
+2022,QWO,NHS West Yorkshire ICB,136.3,1.0,31.1642,137.3,residual_linear,full_19,,167.4642
+2022,QWU,NHS Coventry and Warwickshire ICB,165.3,-19.5,27.4828,145.8,residual_linear,full_19,,192.7828
+2022,QXU,NHS Surrey Heartlands ICB,134.0,3.1,8.6103,137.1,residual_linear,full_19,,142.6103
+2022,QYG,NHS Cheshire and Merseyside ICB,149.3,-4.4,18.4519,144.9,residual_linear,full_19,,167.7519
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.9,-0.1,-1.021,131.8,residual_ridge,compact_5,10.0,130.879
+2022,QF7,NHS South Yorkshire ICB,136.6,1.8,-2.409,138.4,residual_ridge,compact_5,10.0,134.191
+2022,QGH,NHS Herefordshire and Worcestershire ICB,165.9,-1.2,-1.6933,164.7,residual_ridge,compact_5,10.0,164.2067
+2022,QH8,NHS Mid and South Essex ICB,128.1,23.2,16.7236,151.3,residual_ridge,compact_5,10.0,144.8236
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",126.7,6.3,4.5519,133.0,residual_ridge,compact_5,10.0,131.2519
+2022,QHL,NHS Birmingham and Solihull ICB,107.1,3.6,2.7333,110.7,residual_ridge,compact_5,10.0,109.8333
+2022,QHM,NHS North East and North Cumbria ICB,155.9,1.4,-1.6951,157.3,residual_ridge,compact_5,10.0,154.2049
+2022,QJ2,NHS Derby and Derbyshire ICB,163.6,-5.3,0.0252,158.3,residual_ridge,compact_5,10.0,163.6252
+2022,QJG,NHS Suffolk and North East Essex ICB,176.0,-5.6,-2.8016,170.4,residual_ridge,compact_5,10.0,173.1984
+2022,QJK,NHS Devon ICB,186.1,-7.7,1.4295,178.4,residual_ridge,compact_5,10.0,187.5295
+2022,QJM,NHS Lincolnshire ICB,168.3,-1.0,-5.9773,167.3,residual_ridge,compact_5,10.0,162.3227
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",135.8,-2.9,-0.6425,132.9,residual_ridge,compact_5,10.0,135.1575
+2022,QKK,NHS South East London ICB,116.6,0.9,2.9068,117.5,residual_ridge,compact_5,10.0,119.5068
+2022,QKS,NHS Kent and Medway ICB,131.4,4.0,1.5628,135.4,residual_ridge,compact_5,10.0,132.9628
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.4,0.1,-0.3221,146.5,residual_ridge,compact_5,10.0,146.0779
+2022,QMF,NHS North East London ICB,103.5,-2.3,0.5457,101.2,residual_ridge,compact_5,10.0,104.0457
+2022,QMJ,NHS North Central London ICB,114.5,5.0,-0.7695,119.5,residual_ridge,compact_5,10.0,113.7305
+2022,QMM,NHS Norfolk and Waveney ICB,144.3,5.0,-0.731,149.3,residual_ridge,compact_5,10.0,143.569
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,124.3,12.9,-1.4418,137.2,residual_ridge,compact_5,10.0,122.8582
+2022,QNQ,NHS Frimley ICB,124.3,-1.0,2.3564,123.3,residual_ridge,compact_5,10.0,126.6564
+2022,QNX,NHS Sussex ICB,160.6,-8.5,4.1898,152.1,residual_ridge,compact_5,10.0,164.7898
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",186.9,-13.2,2.5288,173.7,residual_ridge,compact_5,10.0,189.4288
+2022,QOP,NHS Greater Manchester ICB,125.2,-2.5,-0.2155,122.7,residual_ridge,compact_5,10.0,124.9845
+2022,QOQ,NHS Humber and North Yorkshire ICB,168.9,-3.1,-1.4213,165.8,residual_ridge,compact_5,10.0,167.4787
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",147.1,4.6,2.0442,151.7,residual_ridge,compact_5,10.0,149.1442
+2022,QPM,NHS Northamptonshire ICB,133.2,-3.5,0.1397,129.7,residual_ridge,compact_5,10.0,133.3397
+2022,QR1,NHS Gloucestershire ICB,162.2,-8.8,1.777,153.4,residual_ridge,compact_5,10.0,163.977
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,123.9,17.6,8.4502,141.5,residual_ridge,compact_5,10.0,132.3502
+2022,QRV,NHS North West London ICB,95.2,5.9,0.0543,101.1,residual_ridge,compact_5,10.0,95.2543
+2022,QSL,NHS Somerset ICB,142.2,6.2,2.9301,148.4,residual_ridge,compact_5,10.0,145.1301
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,0.0,0.6327,140.3,residual_ridge,compact_5,10.0,140.9327
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,175.4,-9.2,1.7092,166.2,residual_ridge,compact_5,10.0,177.1092
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",135.5,-0.8,4.4964,134.7,residual_ridge,compact_5,10.0,139.9964
+2022,QUA,NHS Black Country ICB,137.7,-2.0,2.5824,135.7,residual_ridge,compact_5,10.0,140.2824
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,139.0,2.1,1.7698,141.1,residual_ridge,compact_5,10.0,140.7698
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",156.1,-7.5,6.747,148.6,residual_ridge,compact_5,10.0,162.847
+2022,QVV,NHS Dorset ICB,172.5,-3.7,2.6749,168.8,residual_ridge,compact_5,10.0,175.1749
+2022,QWE,NHS South West London ICB,117.6,-3.0,2.8631,114.6,residual_ridge,compact_5,10.0,120.4631
+2022,QWO,NHS West Yorkshire ICB,136.3,1.0,1.5663,137.3,residual_ridge,compact_5,10.0,137.8663
+2022,QWU,NHS Coventry and Warwickshire ICB,165.3,-19.5,-4.9103,145.8,residual_ridge,compact_5,10.0,160.3897
+2022,QXU,NHS Surrey Heartlands ICB,134.0,3.1,1.8638,137.1,residual_ridge,compact_5,10.0,135.8638
+2022,QYG,NHS Cheshire and Merseyside ICB,149.3,-4.4,-3.6083,144.9,residual_ridge,compact_5,10.0,145.6917
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.9,-0.1,6.2514,131.8,residual_ridge,full_19,1000.0,138.1514
+2022,QF7,NHS South Yorkshire ICB,136.6,1.8,1.4105,138.4,residual_ridge,full_19,1000.0,138.0105
+2022,QGH,NHS Herefordshire and Worcestershire ICB,165.9,-1.2,7.2707,164.7,residual_ridge,full_19,1000.0,173.1707
+2022,QH8,NHS Mid and South Essex ICB,128.1,23.2,8.467,151.3,residual_ridge,full_19,1000.0,136.567
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",126.7,6.3,3.5364,133.0,residual_ridge,full_19,1000.0,130.2364
+2022,QHL,NHS Birmingham and Solihull ICB,107.1,3.6,5.1531,110.7,residual_ridge,full_19,1000.0,112.2531
+2022,QHM,NHS North East and North Cumbria ICB,155.9,1.4,2.1258,157.3,residual_ridge,full_19,1000.0,158.0258
+2022,QJ2,NHS Derby and Derbyshire ICB,163.6,-5.3,3.987,158.3,residual_ridge,full_19,1000.0,167.587
+2022,QJG,NHS Suffolk and North East Essex ICB,176.0,-5.6,-0.9029,170.4,residual_ridge,full_19,1000.0,175.0971
+2022,QJK,NHS Devon ICB,186.1,-7.7,3.2746,178.4,residual_ridge,full_19,1000.0,189.3746
+2022,QJM,NHS Lincolnshire ICB,168.3,-1.0,2.2787,167.3,residual_ridge,full_19,1000.0,170.5787
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",135.8,-2.9,4.9608,132.9,residual_ridge,full_19,1000.0,140.7608
+2022,QKK,NHS South East London ICB,116.6,0.9,5.9692,117.5,residual_ridge,full_19,1000.0,122.5692
+2022,QKS,NHS Kent and Medway ICB,131.4,4.0,9.9795,135.4,residual_ridge,full_19,1000.0,141.3795
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.4,0.1,5.2442,146.5,residual_ridge,full_19,1000.0,151.6442
+2022,QMF,NHS North East London ICB,103.5,-2.3,5.6169,101.2,residual_ridge,full_19,1000.0,109.1169
+2022,QMJ,NHS North Central London ICB,114.5,5.0,5.0372,119.5,residual_ridge,full_19,1000.0,119.5372
+2022,QMM,NHS Norfolk and Waveney ICB,144.3,5.0,4.032,149.3,residual_ridge,full_19,1000.0,148.332
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,124.3,12.9,10.6966,137.2,residual_ridge,full_19,1000.0,134.9966
+2022,QNQ,NHS Frimley ICB,124.3,-1.0,2.9393,123.3,residual_ridge,full_19,1000.0,127.2393
+2022,QNX,NHS Sussex ICB,160.6,-8.5,6.4455,152.1,residual_ridge,full_19,1000.0,167.0455
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",186.9,-13.2,8.9395,173.7,residual_ridge,full_19,1000.0,195.8395
+2022,QOP,NHS Greater Manchester ICB,125.2,-2.5,6.8831,122.7,residual_ridge,full_19,1000.0,132.0831
+2022,QOQ,NHS Humber and North Yorkshire ICB,168.9,-3.1,5.4226,165.8,residual_ridge,full_19,1000.0,174.3226
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",147.1,4.6,1.9048,151.7,residual_ridge,full_19,1000.0,149.0048
+2022,QPM,NHS Northamptonshire ICB,133.2,-3.5,7.1666,129.7,residual_ridge,full_19,1000.0,140.3666
+2022,QR1,NHS Gloucestershire ICB,162.2,-8.8,4.3876,153.4,residual_ridge,full_19,1000.0,166.5876
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,123.9,17.6,7.8944,141.5,residual_ridge,full_19,1000.0,131.7944
+2022,QRV,NHS North West London ICB,95.2,5.9,2.6232,101.1,residual_ridge,full_19,1000.0,97.8232
+2022,QSL,NHS Somerset ICB,142.2,6.2,2.249,148.4,residual_ridge,full_19,1000.0,144.449
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,0.0,2.5875,140.3,residual_ridge,full_19,1000.0,142.8875
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,175.4,-9.2,5.0936,166.2,residual_ridge,full_19,1000.0,180.4936
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",135.5,-0.8,3.0998,134.7,residual_ridge,full_19,1000.0,138.5998
+2022,QUA,NHS Black Country ICB,137.7,-2.0,7.7879,135.7,residual_ridge,full_19,1000.0,145.4879
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,139.0,2.1,1.6653,141.1,residual_ridge,full_19,1000.0,140.6653
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",156.1,-7.5,6.7282,148.6,residual_ridge,full_19,1000.0,162.8282
+2022,QVV,NHS Dorset ICB,172.5,-3.7,3.1418,168.8,residual_ridge,full_19,1000.0,175.6418
+2022,QWE,NHS South West London ICB,117.6,-3.0,4.9943,114.6,residual_ridge,full_19,1000.0,122.5943
+2022,QWO,NHS West Yorkshire ICB,136.3,1.0,3.6753,137.3,residual_ridge,full_19,1000.0,139.9753
+2022,QWU,NHS Coventry and Warwickshire ICB,165.3,-19.5,8.0132,145.8,residual_ridge,full_19,1000.0,173.3132
+2022,QXU,NHS Surrey Heartlands ICB,134.0,3.1,3.5557,137.1,residual_ridge,full_19,1000.0,137.5557
+2022,QYG,NHS Cheshire and Merseyside ICB,149.3,-4.4,7.4124,144.9,residual_ridge,full_19,1000.0,156.7124

@@ -1,0 +1,7 @@
+model,feature_set,alpha,feature_count,mae,rmse,r2,mae_improvement_vs_persistence,beats_persistence_mae
+residual_ridge,compact_5,10.0,5,5.0488,6.661,0.874,0.2251,True
+residual_linear,compact_5,,5,5.252,7.0332,0.8595,0.0218,True
+persistence,none,,0,5.2738,7.407,0.8442,0.0,False
+residual_ridge,full_19,1000.0,19,7.2224,9.3121,0.7537,-1.9486,False
+mean_residual_correction,none,,0,8.5672,10.6333,0.6789,-3.2934,False
+residual_linear,full_19,,19,18.9525,22.5143,-0.4397,-13.6787,False
