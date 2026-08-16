@@ -9,23 +9,40 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
-INTERIM_DIR = PROJECT_ROOT / "data" / "interim"
+INTERIM_DIR = (
+    PROJECT_ROOT
+    / "data"
+    / "interim"
+)
 
 OUTPUT_FILE = (
     INTERIM_DIR
-    / "forecasting_panel_2019_20_to_2023.csv"
+    / "forecasting_panel_2018_19_to_2023.csv"
 )
 
 
 # --------------------------------------------------
-# 2. Input files
+# 2. Historical predictor files
 # --------------------------------------------------
 
 PREDICTOR_FILES = {
-    "2019_20": INTERIM_DIR / "nda_type2_icb_2019_20.csv",
-    "2020_21": INTERIM_DIR / "nda_type2_icb_2020_21.csv",
-    "2021_22": INTERIM_DIR / "nda_type2_icb_2021_22.csv",
+    "2018_19":
+        INTERIM_DIR
+        / "nda_type2_icb_2018_19.csv",
+
+    "2019_20":
+        INTERIM_DIR
+        / "nda_type2_icb_2019_20.csv",
+
+    "2020_21":
+        INTERIM_DIR
+        / "nda_type2_icb_2020_21.csv",
+
+    "2021_22":
+        INTERIM_DIR
+        / "nda_type2_icb_2021_22.csv",
 }
+
 
 CKD_FILE = (
     INTERIM_DIR
@@ -36,10 +53,13 @@ CKD_FILE = (
 # --------------------------------------------------
 # 3. Forecasting alignment
 #
-# Predictor audit period -> later CKD calendar year
+# Historical NDA predictor period
+#          ↓
+# Later CKD calendar-year outcome
 # --------------------------------------------------
 
 TARGET_YEAR_MAP = {
+    "2018_19": 2020,
     "2019_20": 2021,
     "2020_21": 2022,
     "2021_22": 2023,
@@ -47,10 +67,14 @@ TARGET_YEAR_MAP = {
 
 
 # --------------------------------------------------
-# 4. Common predictor set
+# 4. Common four-year feature set
 #
-# These 21 variables exist consistently across
-# all three historical NDA releases.
+# These 19 predictors are consistently available
+# across ALL FOUR historical NDA periods.
+#
+# Retinal screening and all-nine-care-processes
+# are excluded because they are unavailable
+# in 2018-19.
 # --------------------------------------------------
 
 COMMON_FEATURES = [
@@ -59,27 +83,29 @@ COMMON_FEATURES = [
     "cholesterol",
     "serum_creatinine",
     "urine_albumin",
-    "retinal_screening",
     "foot_surveillance",
     "bmi",
     "smoking",
     "all_eight_care_processes",
-    "all_nine_care_processes",
+
     "hba1c_le_48_mmol_mol_6_5pct",
     "hba1c_le_53_mmol_mol_7_0pct",
     "hba1c_le_58_mmol_mol_7_5pct",
     "hba1c_le_75_mmol_mol_9_0pct",
     "hba1c_le_86_mmol_mol_10_0pct",
+
     "blood_pressure_le_140_80",
+
     "primary_prevention_on_statins_without_cvd_history",
     "secondary_prevention_on_statins_with_cvd_history",
     "combined_prevention_on_statins",
+
     "all_three_treatment_targets",
 ]
 
 
 # --------------------------------------------------
-# 5. Check source files exist
+# 5. Validate input files
 # --------------------------------------------------
 
 for audit_year, file_path in PREDICTOR_FILES.items():
@@ -93,7 +119,8 @@ for audit_year, file_path in PREDICTOR_FILES.items():
 
 if not CKD_FILE.exists():
     raise FileNotFoundError(
-        f"Missing CKD outcome file: {CKD_FILE}"
+        f"Missing CKD outcome file: "
+        f"{CKD_FILE}"
     )
 
 
@@ -101,7 +128,10 @@ if not CKD_FILE.exists():
 # 6. Load CKD outcome panel
 # --------------------------------------------------
 
-ckd = pd.read_csv(CKD_FILE)
+ckd = pd.read_csv(
+    CKD_FILE
+)
+
 
 print(
     f"CKD outcome dataset shape: "
@@ -132,8 +162,39 @@ if missing_ckd_columns:
     )
 
 
+# Standardise ICB codes.
+ckd["icb_code"] = (
+    ckd["icb_code"]
+    .astype("string")
+    .str.strip()
+)
+
+
 # --------------------------------------------------
-# 7. Build each forecasting year separately
+# 7. Validate CKD outcome uniqueness
+# --------------------------------------------------
+
+ckd_duplicate_count = (
+    ckd
+    .duplicated(
+        subset=[
+            "icb_code",
+            "year",
+        ]
+    )
+    .sum()
+)
+
+
+if ckd_duplicate_count != 0:
+    raise RuntimeError(
+        "Duplicate CKD ICB-year "
+        "observations detected."
+    )
+
+
+# --------------------------------------------------
+# 8. Build each forecasting block
 # --------------------------------------------------
 
 forecasting_frames = []
@@ -142,42 +203,112 @@ forecasting_frames = []
 for audit_year, predictor_file in PREDICTOR_FILES.items():
 
     print(
-        f"\nProcessing predictor year "
-        f"{audit_year}..."
+        "\n----------------------------------------"
     )
+
+    print(
+        f"Processing predictor year: "
+        f"{audit_year}"
+    )
+
+    print(
+        "----------------------------------------"
+    )
+
 
     predictors = pd.read_csv(
         predictor_file
     )
 
-    target_year = (
-        TARGET_YEAR_MAP[audit_year]
+
+    # ----------------------------------------------
+    # Standardise ICB codes
+    # ----------------------------------------------
+
+    predictors["icb_code"] = (
+        predictors["icb_code"]
+        .astype("string")
+        .str.strip()
     )
 
 
     # ----------------------------------------------
-    # Validate predictor structure
+    # Confirm correct audit year
+    # ----------------------------------------------
+
+    observed_audit_years = set(
+        predictors[
+            "audit_year"
+        ]
+        .astype("string")
+        .str.strip()
+        .dropna()
+        .unique()
+    )
+
+
+    if observed_audit_years != {
+        audit_year
+    }:
+        raise RuntimeError(
+            f"{audit_year}: unexpected "
+            f"audit-year values: "
+            f"{observed_audit_years}"
+        )
+
+
+    # ----------------------------------------------
+    # Identify later target year
+    # ----------------------------------------------
+
+    target_year = (
+        TARGET_YEAR_MAP[
+            audit_year
+        ]
+    )
+
+
+    print(
+        f"Target CKD year: "
+        f"{target_year}"
+    )
+
+
+    # ----------------------------------------------
+    # Validate required predictors
     # ----------------------------------------------
 
     required_predictor_columns = (
-        {"audit_year", "icb_code"}
-        | set(COMMON_FEATURES)
+        {
+            "audit_year",
+            "icb_code",
+        }
+        |
+        set(
+            COMMON_FEATURES
+        )
     )
 
 
     missing_predictor_columns = (
         required_predictor_columns
-        - set(predictors.columns)
+        - set(
+            predictors.columns
+        )
     )
 
 
     if missing_predictor_columns:
         raise RuntimeError(
             f"{audit_year} is missing "
-            f"predictors: "
+            f"required predictors: "
             f"{sorted(missing_predictor_columns)}"
         )
 
+
+    # ----------------------------------------------
+    # Validate predictor geography
+    # ----------------------------------------------
 
     if len(predictors) != 42:
         raise RuntimeError(
@@ -188,7 +319,9 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
 
 
     if (
-        predictors["icb_code"]
+        predictors[
+            "icb_code"
+        ]
         .nunique()
         != 42
     ):
@@ -199,7 +332,9 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
 
 
     if (
-        predictors["icb_code"]
+        predictors[
+            "icb_code"
+        ]
         .duplicated()
         .any()
     ):
@@ -209,38 +344,73 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
         )
 
 
-    # Keep only the common feature set.
+    # ----------------------------------------------
+    # Keep only common four-year feature core
+    # ----------------------------------------------
+
     predictors = predictors[
         [
             "audit_year",
             "icb_code",
         ]
-        + COMMON_FEATURES
+        +
+        COMMON_FEATURES
     ].copy()
 
 
     # ----------------------------------------------
-    # Select the later CKD outcome year
+    # Check missing predictor values
     # ----------------------------------------------
 
-    outcome = ckd[
-        ckd["year"] == target_year
-    ][
-        [
-            "icb_code",
-            "icb_name",
-            "year",
-            "ckd_cases",
-            "diabetes_population",
-            "ckd_risk_rate_per_1000",
+    if (
+        predictors[
+            COMMON_FEATURES
         ]
-    ].copy()
+        .isna()
+        .any()
+        .any()
+    ):
+
+        missing = (
+            predictors[
+                COMMON_FEATURES
+            ]
+            .isna()
+            .sum()
+        )
+
+        missing = missing[
+            missing > 0
+        ]
+
+        raise RuntimeError(
+            f"{audit_year}: missing "
+            f"predictor values detected:\n"
+            f"{missing}"
+        )
 
 
-    print(
-        f"Target CKD year: "
-        f"{target_year}"
+    # ----------------------------------------------
+    # Select future CKD outcome
+    # ----------------------------------------------
+
+    outcome = (
+        ckd[
+            ckd["year"]
+            == target_year
+        ][
+            [
+                "icb_code",
+                "icb_name",
+                "year",
+                "ckd_cases",
+                "diabetes_population",
+                "ckd_risk_rate_per_1000",
+            ]
+        ]
+        .copy()
     )
+
 
     print(
         f"Predictor ICBs: "
@@ -253,16 +423,41 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
     )
 
 
+    if len(outcome) != 42:
+        raise RuntimeError(
+            f"CKD {target_year}: expected "
+            f"42 outcome rows, "
+            f"found {len(outcome)}."
+        )
+
+
+    if (
+        outcome[
+            "icb_code"
+        ]
+        .nunique()
+        != 42
+    ):
+        raise RuntimeError(
+            f"CKD {target_year}: "
+            f"expected 42 unique ICBs."
+        )
+
+
     # ----------------------------------------------
-    # Validate exact ICB code match
+    # Exact geography comparison
     # ----------------------------------------------
 
     predictor_codes = set(
-        predictors["icb_code"]
+        predictors[
+            "icb_code"
+        ]
     )
 
     outcome_codes = set(
-        outcome["icb_code"]
+        outcome[
+            "icb_code"
+        ]
     )
 
 
@@ -277,15 +472,25 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
     )
 
 
-    if only_predictors or only_outcome:
+    if (
+        only_predictors
+        or
+        only_outcome
+    ):
         raise RuntimeError(
-            f"ICB mismatch for {audit_year} "
-            f"-> {target_year}.\n"
+            f"ICB mismatch for "
+            f"{audit_year} -> "
+            f"{target_year}.\n"
             f"Only predictors: "
             f"{only_predictors}\n"
-            f"Only outcome: "
+            f"Only outcomes: "
             f"{only_outcome}"
         )
+
+
+    print(
+        "ICB geography match: PASSED"
+    )
 
 
     # ----------------------------------------------
@@ -302,13 +507,14 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
 
     merged = merged.rename(
         columns={
-            "year": "target_year"
+            "year":
+                "target_year"
         }
     )
 
 
     # ----------------------------------------------
-    # Validate merged forecasting block
+    # Validate forecasting block
     # ----------------------------------------------
 
     if len(merged) != 42:
@@ -320,7 +526,30 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
         )
 
 
+    if (
+        merged["target_year"]
+        .nunique()
+        != 1
+    ):
+        raise RuntimeError(
+            f"{audit_year}: multiple "
+            f"target years detected."
+        )
+
+
+    if (
+        merged["target_year"]
+        .iloc[0]
+        != target_year
+    ):
+        raise RuntimeError(
+            f"{audit_year}: incorrect "
+            f"target-year assignment."
+        )
+
+
     if merged.isna().any().any():
+
         missing = (
             merged
             .isna()
@@ -332,9 +561,9 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
         ]
 
         raise RuntimeError(
-            f"Missing values after merging "
+            f"Missing values after "
             f"{audit_year} -> "
-            f"{target_year}:\n"
+            f"{target_year} merge:\n"
             f"{missing}"
         )
 
@@ -345,7 +574,7 @@ for audit_year, predictor_file in PREDICTOR_FILES.items():
 
 
 # --------------------------------------------------
-# 8. Combine all three forecasting periods
+# 9. Combine all four forecasting blocks
 # --------------------------------------------------
 
 panel = pd.concat(
@@ -355,7 +584,7 @@ panel = pd.concat(
 
 
 # --------------------------------------------------
-# 9. Sort consistently
+# 10. Sort final panel
 # --------------------------------------------------
 
 panel = (
@@ -366,12 +595,14 @@ panel = (
             "icb_code",
         ]
     )
-    .reset_index(drop=True)
+    .reset_index(
+        drop=True
+    )
 )
 
 
 # --------------------------------------------------
-# 10. Reorder columns
+# 11. Reorder final columns
 # --------------------------------------------------
 
 panel = panel[
@@ -381,8 +612,10 @@ panel = panel[
         "icb_code",
         "icb_name",
     ]
-    + COMMON_FEATURES
-    + [
+    +
+    COMMON_FEATURES
+    +
+    [
         "ckd_cases",
         "diabetes_population",
         "ckd_risk_rate_per_1000",
@@ -391,12 +624,30 @@ panel = panel[
 
 
 # --------------------------------------------------
-# 11. Final panel audit
+# 12. Final forecasting-panel audit
 # --------------------------------------------------
+
+print(
+    "\n========================================"
+)
+
+print(
+    "FINAL FOUR-YEAR FORECASTING PANEL"
+)
+
+print(
+    "========================================"
+)
+
 
 print(
     f"\nFinal forecasting panel shape: "
     f"{panel.shape}"
+)
+
+print(
+    f"Common predictors: "
+    f"{len(COMMON_FEATURES)}"
 )
 
 print(
@@ -410,44 +661,77 @@ print(
 )
 
 
-print("\nRows per target year:")
+# --------------------------------------------------
+# 13. Rows per target year
+# --------------------------------------------------
 
-print(
+rows_per_year = (
     panel
-    .groupby("target_year")
+    .groupby(
+        "target_year"
+    )
     .size()
-    .to_string()
 )
 
-
-print("\nUnique ICBs per target year:")
 
 print(
-    panel
-    .groupby("target_year")["icb_code"]
-    .nunique()
-    .to_string()
+    "\nRows per target year:"
+)
+
+print(
+    rows_per_year.to_string()
 )
 
 
-print("\nMissing values:")
+# --------------------------------------------------
+# 14. Unique ICBs per target year
+# --------------------------------------------------
 
-missing = (
+icbs_per_year = (
+    panel
+    .groupby(
+        "target_year"
+    )[
+        "icb_code"
+    ]
+    .nunique()
+)
+
+
+print(
+    "\nUnique ICBs per target year:"
+)
+
+print(
+    icbs_per_year.to_string()
+)
+
+
+# --------------------------------------------------
+# 15. Missing-value audit
+# --------------------------------------------------
+
+print(
+    "\nMissing values:"
+)
+
+print(
     panel
     .isna()
     .sum()
-)
-
-print(
-    missing.to_string()
+    .to_string()
 )
 
 
-print("\nCKD target summary by year:")
+# --------------------------------------------------
+# 16. CKD outcome summary by target year
+# --------------------------------------------------
 
 target_summary = (
     panel
-    .groupby("target_year")[
+    .groupby(
+        "target_year"
+    )[
         "ckd_risk_rate_per_1000"
     ]
     .agg(
@@ -463,80 +747,126 @@ target_summary = (
     .round(2)
 )
 
+
+print(
+    "\nCKD target summary by year:"
+)
+
 print(
     target_summary.to_string()
 )
 
 
 # --------------------------------------------------
-# 12. Final validation rules
+# 17. Validate exact four-year panel structure
 # --------------------------------------------------
 
-if len(panel) != 126:
+if len(panel) != 168:
     raise RuntimeError(
-        f"Expected 126 forecasting rows, "
+        f"Expected 168 forecasting rows, "
         f"found {len(panel)}."
     )
 
 
-if panel["icb_code"].nunique() != 42:
+if len(panel.columns) != 26:
     raise RuntimeError(
-        "Expected 42 unique ICBs "
-        "in final forecasting panel."
+        f"Expected 26 columns, "
+        f"found {len(panel.columns)}."
+    )
+
+
+if (
+    panel[
+        "icb_code"
+    ]
+    .nunique()
+    != 42
+):
+    raise RuntimeError(
+        "Expected 42 unique ICBs."
     )
 
 
 expected_target_years = {
+    2020,
     2021,
     2022,
     2023,
 }
 
 
-if set(
-    panel["target_year"].unique()
-) != expected_target_years:
-
-    raise RuntimeError(
-        "Unexpected CKD target years."
-    )
-
-
-rows_per_year = (
-    panel
-    .groupby("target_year")
-    .size()
+observed_target_years = set(
+    panel[
+        "target_year"
+    ]
+    .unique()
 )
+
+
+if (
+    observed_target_years
+    != expected_target_years
+):
+    raise RuntimeError(
+        "Unexpected target-year set: "
+        f"{sorted(observed_target_years)}"
+    )
 
 
 if not (
     rows_per_year == 42
 ).all():
-
     raise RuntimeError(
-        "Expected exactly 42 rows "
-        "for every target year."
+        "Every target year must contain "
+        "exactly 42 rows."
     )
-
-
-icbs_per_year = (
-    panel
-    .groupby("target_year")[
-        "icb_code"
-    ]
-    .nunique()
-)
 
 
 if not (
     icbs_per_year == 42
 ).all():
-
     raise RuntimeError(
         "Every target year must contain "
         "all 42 ICBs."
     )
 
+
+# --------------------------------------------------
+# 18. Check same ICB membership every year
+# --------------------------------------------------
+
+year_icb_sets = [
+    set(
+        panel.loc[
+            panel[
+                "target_year"
+            ]
+            == year,
+            "icb_code"
+        ]
+    )
+    for year
+    in sorted(
+        expected_target_years
+    )
+]
+
+
+if not all(
+    current_set
+    == year_icb_sets[0]
+    for current_set
+    in year_icb_sets[1:]
+):
+    raise RuntimeError(
+        "ICB membership differs "
+        "between target years."
+    )
+
+
+# --------------------------------------------------
+# 19. Duplicate check
+# --------------------------------------------------
 
 duplicate_count = (
     panel
@@ -557,6 +887,10 @@ if duplicate_count != 0:
     )
 
 
+# --------------------------------------------------
+# 20. Missing-value check
+# --------------------------------------------------
+
 if panel.isna().any().any():
     raise RuntimeError(
         "Missing values detected "
@@ -564,15 +898,91 @@ if panel.isna().any().any():
     )
 
 
+# --------------------------------------------------
+# 21. Target validity checks
+# --------------------------------------------------
+
 if (
     panel[
         "ckd_risk_rate_per_1000"
-    ] < 0
+    ]
+    < 0
 ).any():
-
     raise RuntimeError(
         "Negative CKD risk-rate "
         "values detected."
+    )
+
+
+if (
+    panel[
+        "ckd_cases"
+    ]
+    < 0
+).any():
+    raise RuntimeError(
+        "Negative CKD case counts detected."
+    )
+
+
+if (
+    panel[
+        "diabetes_population"
+    ]
+    <= 0
+).any():
+    raise RuntimeError(
+        "Invalid diabetes-population "
+        "values detected."
+    )
+
+
+# --------------------------------------------------
+# 22. Explicit temporal alignment check
+# --------------------------------------------------
+
+observed_alignment = (
+    panel[
+        [
+            "audit_year",
+            "target_year",
+        ]
+    ]
+    .drop_duplicates()
+)
+
+
+expected_alignment = {
+    (
+        audit_year,
+        target_year
+    )
+    for audit_year, target_year
+    in TARGET_YEAR_MAP.items()
+}
+
+
+observed_alignment_set = set(
+    map(
+        tuple,
+        observed_alignment[
+            [
+                "audit_year",
+                "target_year",
+            ]
+        ]
+        .to_numpy()
+    )
+)
+
+
+if (
+    observed_alignment_set
+    != expected_alignment
+):
+    raise RuntimeError(
+        "Final temporal alignment "
+        "does not match intended design."
     )
 
 
@@ -583,7 +993,7 @@ print(
 
 
 # --------------------------------------------------
-# 13. Save final forecasting panel
+# 23. Save final four-year forecasting panel
 # --------------------------------------------------
 
 panel.to_csv(
