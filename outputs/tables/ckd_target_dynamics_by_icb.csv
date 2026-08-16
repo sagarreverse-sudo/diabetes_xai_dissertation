@@ -1,0 +1,127 @@
+previous_year,current_year,icb_code,icb_name,previous_ckd_rate,current_ckd_rate,signed_change,absolute_change,percent_change,direction
+2019,2020,QE1,NHS Lancashire and South Cumbria ICB,163.3,130.8,-32.5,32.5,-19.902,decrease
+2019,2020,QF7,NHS South Yorkshire ICB,144.3,135.4,-8.9,8.9,-6.168,decrease
+2019,2020,QGH,NHS Herefordshire and Worcestershire ICB,192.4,172.0,-20.4,20.4,-10.603,decrease
+2019,2020,QH8,NHS Mid and South Essex ICB,134.8,99.0,-35.8,35.8,-26.558,decrease
+2019,2020,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",148.3,134.8,-13.5,13.5,-9.103,decrease
+2019,2020,QHL,NHS Birmingham and Solihull ICB,136.8,114.2,-22.6,22.6,-16.52,decrease
+2019,2020,QHM,NHS North East and North Cumbria ICB,175.2,156.4,-18.8,18.8,-10.731,decrease
+2019,2020,QJ2,NHS Derby and Derbyshire ICB,182.0,173.6,-8.4,8.4,-4.615,decrease
+2019,2020,QJG,NHS Suffolk and North East Essex ICB,199.3,179.2,-20.1,20.1,-10.085,decrease
+2019,2020,QJK,NHS Devon ICB,195.1,184.6,-10.5,10.5,-5.382,decrease
+2019,2020,QJM,NHS Lincolnshire ICB,182.5,179.5,-3.0,3.0,-1.644,decrease
+2019,2020,QK1,"NHS Leicester, Leicestershire and Rutland ICB",143.6,129.3,-14.3,14.3,-9.958,decrease
+2019,2020,QKK,NHS South East London ICB,133.6,117.4,-16.2,16.2,-12.126,decrease
+2019,2020,QKS,NHS Kent and Medway ICB,152.7,132.8,-19.9,19.9,-13.032,decrease
+2019,2020,QM7,NHS Hertfordshire and West Essex ICB,153.0,141.8,-11.2,11.2,-7.32,decrease
+2019,2020,QMF,NHS North East London ICB,127.2,105.5,-21.7,21.7,-17.06,decrease
+2019,2020,QMJ,NHS North Central London ICB,127.4,118.4,-9.0,9.0,-7.064,decrease
+2019,2020,QMM,NHS Norfolk and Waveney ICB,159.8,157.3,-2.5,2.5,-1.564,decrease
+2019,2020,QNC,NHS Staffordshire and Stoke-On-Trent ICB,143.9,124.4,-19.5,19.5,-13.551,decrease
+2019,2020,QNQ,NHS Frimley ICB,134.6,129.3,-5.3,5.3,-3.938,decrease
+2019,2020,QNX,NHS Sussex ICB,183.6,156.9,-26.7,26.7,-14.542,decrease
+2019,2020,QOC,"NHS Shropshire, Telford and Wrekin ICB",193.0,180.8,-12.2,12.2,-6.321,decrease
+2019,2020,QOP,NHS Greater Manchester ICB,145.4,123.6,-21.8,21.8,-14.993,decrease
+2019,2020,QOQ,NHS Humber and North Yorkshire ICB,189.2,169.7,-19.5,19.5,-10.307,decrease
+2019,2020,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",177.3,159.2,-18.1,18.1,-10.209,decrease
+2019,2020,QPM,NHS Northamptonshire ICB,145.2,140.6,-4.6,4.6,-3.168,decrease
+2019,2020,QR1,NHS Gloucestershire ICB,182.2,162.7,-19.5,19.5,-10.703,decrease
+2019,2020,QRL,NHS Hampshire and Isle Of Wight ICB,122.2,106.1,-16.1,16.1,-13.175,decrease
+2019,2020,QRV,NHS North West London ICB,106.2,97.8,-8.4,8.4,-7.91,decrease
+2019,2020,QSL,NHS Somerset ICB,157.3,142.4,-14.9,14.9,-9.472,decrease
+2019,2020,QT1,NHS Nottingham and Nottinghamshire ICB,142.9,137.8,-5.1,5.1,-3.569,decrease
+2019,2020,QT6,NHS Cornwall and The Isles Of Scilly ICB,197.8,192.7,-5.1,5.1,-2.578,decrease
+2019,2020,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",136.6,127.5,-9.1,9.1,-6.662,decrease
+2019,2020,QUA,NHS Black Country ICB,167.0,147.4,-19.6,19.6,-11.737,decrease
+2019,2020,QUE,NHS Cambridgeshire and Peterborough ICB,143.9,140.8,-3.1,3.1,-2.154,decrease
+2019,2020,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",171.7,161.1,-10.6,10.6,-6.174,decrease
+2019,2020,QVV,NHS Dorset ICB,190.0,178.2,-11.8,11.8,-6.211,decrease
+2019,2020,QWE,NHS South West London ICB,133.9,122.6,-11.3,11.3,-8.439,decrease
+2019,2020,QWO,NHS West Yorkshire ICB,145.0,129.5,-15.5,15.5,-10.69,decrease
+2019,2020,QWU,NHS Coventry and Warwickshire ICB,182.2,161.6,-20.6,20.6,-11.306,decrease
+2019,2020,QXU,NHS Surrey Heartlands ICB,143.2,130.5,-12.7,12.7,-8.869,decrease
+2019,2020,QYG,NHS Cheshire and Merseyside ICB,171.6,147.4,-24.2,24.2,-14.103,decrease
+2020,2021,QE1,NHS Lancashire and South Cumbria ICB,130.8,131.9,1.1,1.1,0.841,increase
+2020,2021,QF7,NHS South Yorkshire ICB,135.4,136.6,1.2,1.2,0.886,increase
+2020,2021,QGH,NHS Herefordshire and Worcestershire ICB,172.0,165.9,-6.1,6.1,-3.547,decrease
+2020,2021,QH8,NHS Mid and South Essex ICB,99.0,128.1,29.1,29.1,29.394,increase
+2020,2021,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",134.8,126.7,-8.1,8.1,-6.009,decrease
+2020,2021,QHL,NHS Birmingham and Solihull ICB,114.2,107.1,-7.1,7.1,-6.217,decrease
+2020,2021,QHM,NHS North East and North Cumbria ICB,156.4,155.9,-0.5,0.5,-0.32,decrease
+2020,2021,QJ2,NHS Derby and Derbyshire ICB,173.6,163.6,-10.0,10.0,-5.76,decrease
+2020,2021,QJG,NHS Suffolk and North East Essex ICB,179.2,176.0,-3.2,3.2,-1.786,decrease
+2020,2021,QJK,NHS Devon ICB,184.6,186.1,1.5,1.5,0.813,increase
+2020,2021,QJM,NHS Lincolnshire ICB,179.5,168.3,-11.2,11.2,-6.24,decrease
+2020,2021,QK1,"NHS Leicester, Leicestershire and Rutland ICB",129.3,135.8,6.5,6.5,5.027,increase
+2020,2021,QKK,NHS South East London ICB,117.4,116.6,-0.8,0.8,-0.681,decrease
+2020,2021,QKS,NHS Kent and Medway ICB,132.8,131.4,-1.4,1.4,-1.054,decrease
+2020,2021,QM7,NHS Hertfordshire and West Essex ICB,141.8,146.4,4.6,4.6,3.244,increase
+2020,2021,QMF,NHS North East London ICB,105.5,103.5,-2.0,2.0,-1.896,decrease
+2020,2021,QMJ,NHS North Central London ICB,118.4,114.5,-3.9,3.9,-3.294,decrease
+2020,2021,QMM,NHS Norfolk and Waveney ICB,157.3,144.3,-13.0,13.0,-8.264,decrease
+2020,2021,QNC,NHS Staffordshire and Stoke-On-Trent ICB,124.4,124.3,-0.1,0.1,-0.08,decrease
+2020,2021,QNQ,NHS Frimley ICB,129.3,124.3,-5.0,5.0,-3.867,decrease
+2020,2021,QNX,NHS Sussex ICB,156.9,160.6,3.7,3.7,2.358,increase
+2020,2021,QOC,"NHS Shropshire, Telford and Wrekin ICB",180.8,186.9,6.1,6.1,3.374,increase
+2020,2021,QOP,NHS Greater Manchester ICB,123.6,125.2,1.6,1.6,1.294,increase
+2020,2021,QOQ,NHS Humber and North Yorkshire ICB,169.7,168.9,-0.8,0.8,-0.471,decrease
+2020,2021,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",159.2,147.1,-12.1,12.1,-7.601,decrease
+2020,2021,QPM,NHS Northamptonshire ICB,140.6,133.2,-7.4,7.4,-5.263,decrease
+2020,2021,QR1,NHS Gloucestershire ICB,162.7,162.2,-0.5,0.5,-0.307,decrease
+2020,2021,QRL,NHS Hampshire and Isle Of Wight ICB,106.1,123.9,17.8,17.8,16.777,increase
+2020,2021,QRV,NHS North West London ICB,97.8,95.2,-2.6,2.6,-2.658,decrease
+2020,2021,QSL,NHS Somerset ICB,142.4,142.2,-0.2,0.2,-0.14,decrease
+2020,2021,QT1,NHS Nottingham and Nottinghamshire ICB,137.8,140.3,2.5,2.5,1.814,increase
+2020,2021,QT6,NHS Cornwall and The Isles Of Scilly ICB,192.7,175.4,-17.3,17.3,-8.978,decrease
+2020,2021,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",127.5,135.5,8.0,8.0,6.275,increase
+2020,2021,QUA,NHS Black Country ICB,147.4,137.7,-9.7,9.7,-6.581,decrease
+2020,2021,QUE,NHS Cambridgeshire and Peterborough ICB,140.8,139.0,-1.8,1.8,-1.278,decrease
+2020,2021,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",161.1,156.1,-5.0,5.0,-3.104,decrease
+2020,2021,QVV,NHS Dorset ICB,178.2,172.5,-5.7,5.7,-3.199,decrease
+2020,2021,QWE,NHS South West London ICB,122.6,117.6,-5.0,5.0,-4.078,decrease
+2020,2021,QWO,NHS West Yorkshire ICB,129.5,136.3,6.8,6.8,5.251,increase
+2020,2021,QWU,NHS Coventry and Warwickshire ICB,161.6,165.3,3.7,3.7,2.29,increase
+2020,2021,QXU,NHS Surrey Heartlands ICB,130.5,134.0,3.5,3.5,2.682,increase
+2020,2021,QYG,NHS Cheshire and Merseyside ICB,147.4,149.3,1.9,1.9,1.289,increase
+2021,2022,QE1,NHS Lancashire and South Cumbria ICB,131.9,131.8,-0.1,0.1,-0.076,decrease
+2021,2022,QF7,NHS South Yorkshire ICB,136.6,138.4,1.8,1.8,1.318,increase
+2021,2022,QGH,NHS Herefordshire and Worcestershire ICB,165.9,164.7,-1.2,1.2,-0.723,decrease
+2021,2022,QH8,NHS Mid and South Essex ICB,128.1,151.3,23.2,23.2,18.111,increase
+2021,2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",126.7,133.0,6.3,6.3,4.972,increase
+2021,2022,QHL,NHS Birmingham and Solihull ICB,107.1,110.7,3.6,3.6,3.361,increase
+2021,2022,QHM,NHS North East and North Cumbria ICB,155.9,157.3,1.4,1.4,0.898,increase
+2021,2022,QJ2,NHS Derby and Derbyshire ICB,163.6,158.3,-5.3,5.3,-3.24,decrease
+2021,2022,QJG,NHS Suffolk and North East Essex ICB,176.0,170.4,-5.6,5.6,-3.182,decrease
+2021,2022,QJK,NHS Devon ICB,186.1,178.4,-7.7,7.7,-4.138,decrease
+2021,2022,QJM,NHS Lincolnshire ICB,168.3,167.3,-1.0,1.0,-0.594,decrease
+2021,2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",135.8,132.9,-2.9,2.9,-2.135,decrease
+2021,2022,QKK,NHS South East London ICB,116.6,117.5,0.9,0.9,0.772,increase
+2021,2022,QKS,NHS Kent and Medway ICB,131.4,135.4,4.0,4.0,3.044,increase
+2021,2022,QM7,NHS Hertfordshire and West Essex ICB,146.4,146.5,0.1,0.1,0.068,increase
+2021,2022,QMF,NHS North East London ICB,103.5,101.2,-2.3,2.3,-2.222,decrease
+2021,2022,QMJ,NHS North Central London ICB,114.5,119.5,5.0,5.0,4.367,increase
+2021,2022,QMM,NHS Norfolk and Waveney ICB,144.3,149.3,5.0,5.0,3.465,increase
+2021,2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,124.3,137.2,12.9,12.9,10.378,increase
+2021,2022,QNQ,NHS Frimley ICB,124.3,123.3,-1.0,1.0,-0.805,decrease
+2021,2022,QNX,NHS Sussex ICB,160.6,152.1,-8.5,8.5,-5.293,decrease
+2021,2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",186.9,173.7,-13.2,13.2,-7.063,decrease
+2021,2022,QOP,NHS Greater Manchester ICB,125.2,122.7,-2.5,2.5,-1.997,decrease
+2021,2022,QOQ,NHS Humber and North Yorkshire ICB,168.9,165.8,-3.1,3.1,-1.835,decrease
+2021,2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",147.1,151.7,4.6,4.6,3.127,increase
+2021,2022,QPM,NHS Northamptonshire ICB,133.2,129.7,-3.5,3.5,-2.628,decrease
+2021,2022,QR1,NHS Gloucestershire ICB,162.2,153.4,-8.8,8.8,-5.425,decrease
+2021,2022,QRL,NHS Hampshire and Isle Of Wight ICB,123.9,141.5,17.6,17.6,14.205,increase
+2021,2022,QRV,NHS North West London ICB,95.2,101.1,5.9,5.9,6.197,increase
+2021,2022,QSL,NHS Somerset ICB,142.2,148.4,6.2,6.2,4.36,increase
+2021,2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,140.3,0.0,0.0,0.0,unchanged
+2021,2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,175.4,166.2,-9.2,9.2,-5.245,decrease
+2021,2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",135.5,134.7,-0.8,0.8,-0.59,decrease
+2021,2022,QUA,NHS Black Country ICB,137.7,135.7,-2.0,2.0,-1.452,decrease
+2021,2022,QUE,NHS Cambridgeshire and Peterborough ICB,139.0,141.1,2.1,2.1,1.511,increase
+2021,2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",156.1,148.6,-7.5,7.5,-4.805,decrease
+2021,2022,QVV,NHS Dorset ICB,172.5,168.8,-3.7,3.7,-2.145,decrease
+2021,2022,QWE,NHS South West London ICB,117.6,114.6,-3.0,3.0,-2.551,decrease
+2021,2022,QWO,NHS West Yorkshire ICB,136.3,137.3,1.0,1.0,0.734,increase
+2021,2022,QWU,NHS Coventry and Warwickshire ICB,165.3,145.8,-19.5,19.5,-11.797,decrease
+2021,2022,QXU,NHS Surrey Heartlands ICB,134.0,137.1,3.1,3.1,2.313,increase
+2021,2022,QYG,NHS Cheshire and Merseyside ICB,149.3,144.9,-4.4,4.4,-2.947,decrease

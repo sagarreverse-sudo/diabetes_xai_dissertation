@@ -1,0 +1,4 @@
+previous_year,current_year,n_icbs,previous_mean,current_mean,mean_signed_change,median_signed_change,std_signed_change,mean_absolute_change,median_absolute_change,max_absolute_change,mean_percent_change,icbs_increased,icbs_decreased,icbs_unchanged,spearman_rho,spearman_p,pearson_r,pearson_p,persistence_mae,persistence_rmse,persistence_r2
+2019,2020,42,158.505,143.633,-14.871,-14.6,7.741,14.871,14.6,35.8,-9.529,0,42,0,0.945,0.0,0.951,0.0,14.871,16.723,0.535
+2020,2021,42,143.633,142.66,-0.974,-0.8,8.092,5.717,4.25,29.1,-0.216,16,26,0,0.961,0.0,0.947,0.0,5.717,8.054,0.867
+2021,2022,42,142.66,142.371,-0.288,-0.9,7.491,5.274,3.65,23.2,0.246,18,23,1,0.922,0.0,0.947,0.0,5.274,7.407,0.844
