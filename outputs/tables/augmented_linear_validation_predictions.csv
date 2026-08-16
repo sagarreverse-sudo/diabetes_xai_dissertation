@@ -1,0 +1,211 @@
+target_year,icb_code,icb_name,actual_ckd_rate,model,feature_set,alpha,prediction
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.8,linear_regression,lag_only,,127.076
+2022,QF7,NHS South Yorkshire ICB,138.4,linear_regression,lag_only,,131.0162
+2022,QGH,NHS Herefordshire and Worcestershire ICB,164.7,linear_regression,lag_only,,155.58
+2022,QH8,NHS Mid and South Essex ICB,151.3,linear_regression,lag_only,,123.8902
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",133.0,linear_regression,lag_only,,122.7165
+2022,QHL,NHS Birmingham and Solihull ICB,110.7,linear_regression,lag_only,,106.2848
+2022,QHM,NHS North East and North Cumbria ICB,157.3,linear_regression,lag_only,,147.1965
+2022,QJ2,NHS Derby and Derbyshire ICB,158.3,linear_regression,lag_only,,153.6518
+2022,QJG,NHS Suffolk and North East Essex ICB,170.4,linear_regression,lag_only,,164.0474
+2022,QJK,NHS Devon ICB,178.4,linear_regression,lag_only,,172.5148
+2022,QJM,NHS Lincolnshire ICB,167.3,linear_regression,lag_only,,157.5921
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",132.9,linear_regression,lag_only,,130.3456
+2022,QKK,NHS South East London ICB,117.5,linear_regression,lag_only,,114.2492
+2022,QKS,NHS Kent and Medway ICB,135.4,linear_regression,lag_only,,126.6568
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.5,linear_regression,lag_only,,139.2321
+2022,QMF,NHS North East London ICB,101.2,linear_regression,lag_only,,103.2667
+2022,QMJ,NHS North Central London ICB,119.5,linear_regression,lag_only,,112.4886
+2022,QMM,NHS Norfolk and Waveney ICB,149.3,linear_regression,lag_only,,137.4716
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,137.2,linear_regression,lag_only,,120.7045
+2022,QNQ,NHS Frimley ICB,123.3,linear_regression,lag_only,,120.7045
+2022,QNX,NHS Sussex ICB,152.1,linear_regression,lag_only,,151.1367
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",173.7,linear_regression,lag_only,,173.1854
+2022,QOP,NHS Greater Manchester ICB,122.7,linear_regression,lag_only,,121.459
+2022,QOQ,NHS Humber and North Yorkshire ICB,165.8,linear_regression,lag_only,,158.0951
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",151.7,linear_regression,lag_only,,139.819
+2022,QPM,NHS Northamptonshire ICB,129.7,linear_regression,lag_only,,128.1658
+2022,QR1,NHS Gloucestershire ICB,153.4,linear_regression,lag_only,,152.4781
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,141.5,linear_regression,lag_only,,120.3692
+2022,QRV,NHS North West London ICB,101.1,linear_regression,lag_only,,96.3084
+2022,QSL,NHS Somerset ICB,148.4,linear_regression,lag_only,,135.711
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,linear_regression,lag_only,,134.1182
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,166.2,linear_regression,lag_only,,163.5444
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",134.7,linear_regression,lag_only,,130.0941
+2022,QUA,NHS Black Country ICB,135.7,linear_regression,lag_only,,131.9384
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,141.1,linear_regression,lag_only,,133.0283
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",148.6,linear_regression,lag_only,,147.3641
+2022,QVV,NHS Dorset ICB,168.8,linear_regression,lag_only,,161.1131
+2022,QWE,NHS South West London ICB,114.6,linear_regression,lag_only,,115.0875
+2022,QWO,NHS West Yorkshire ICB,137.3,linear_regression,lag_only,,130.7647
+2022,QWU,NHS Coventry and Warwickshire ICB,145.8,linear_regression,lag_only,,155.077
+2022,QXU,NHS Surrey Heartlands ICB,137.1,linear_regression,lag_only,,128.8365
+2022,QYG,NHS Cheshire and Merseyside ICB,144.9,linear_regression,lag_only,,141.6633
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.8,linear_regression,lag_plus_compact_5,,132.3207
+2022,QF7,NHS South Yorkshire ICB,138.4,linear_regression,lag_plus_compact_5,,134.8509
+2022,QGH,NHS Herefordshire and Worcestershire ICB,164.7,linear_regression,lag_plus_compact_5,,163.6173
+2022,QH8,NHS Mid and South Essex ICB,151.3,linear_regression,lag_plus_compact_5,,144.8574
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",133.0,linear_regression,lag_plus_compact_5,,135.0343
+2022,QHL,NHS Birmingham and Solihull ICB,110.7,linear_regression,lag_plus_compact_5,,113.6569
+2022,QHM,NHS North East and North Cumbria ICB,157.3,linear_regression,lag_plus_compact_5,,153.385
+2022,QJ2,NHS Derby and Derbyshire ICB,158.3,linear_regression,lag_plus_compact_5,,163.1053
+2022,QJG,NHS Suffolk and North East Essex ICB,170.4,linear_regression,lag_plus_compact_5,,170.5069
+2022,QJK,NHS Devon ICB,178.4,linear_regression,lag_plus_compact_5,,184.5476
+2022,QJM,NHS Lincolnshire ICB,167.3,linear_regression,lag_plus_compact_5,,160.7
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",132.9,linear_regression,lag_plus_compact_5,,136.8788
+2022,QKK,NHS South East London ICB,117.5,linear_regression,lag_plus_compact_5,,123.9154
+2022,QKS,NHS Kent and Medway ICB,135.4,linear_regression,lag_plus_compact_5,,135.5222
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.5,linear_regression,lag_plus_compact_5,,146.5945
+2022,QMF,NHS North East London ICB,101.2,linear_regression,lag_plus_compact_5,,106.9012
+2022,QMJ,NHS North Central London ICB,119.5,linear_regression,lag_plus_compact_5,,116.7041
+2022,QMM,NHS Norfolk and Waveney ICB,149.3,linear_regression,lag_plus_compact_5,,144.9926
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,137.2,linear_regression,lag_plus_compact_5,,125.0359
+2022,QNQ,NHS Frimley ICB,123.3,linear_regression,lag_plus_compact_5,,129.3785
+2022,QNX,NHS Sussex ICB,152.1,linear_regression,lag_plus_compact_5,,164.7907
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",173.7,linear_regression,lag_plus_compact_5,,186.2543
+2022,QOP,NHS Greater Manchester ICB,122.7,linear_regression,lag_plus_compact_5,,126.4139
+2022,QOQ,NHS Humber and North Yorkshire ICB,165.8,linear_regression,lag_plus_compact_5,,165.8329
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",151.7,linear_regression,lag_plus_compact_5,,150.5364
+2022,QPM,NHS Northamptonshire ICB,129.7,linear_regression,lag_plus_compact_5,,135.7966
+2022,QR1,NHS Gloucestershire ICB,153.4,linear_regression,lag_plus_compact_5,,164.4637
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,141.5,linear_regression,lag_plus_compact_5,,134.9702
+2022,QRV,NHS North West London ICB,101.1,linear_regression,lag_plus_compact_5,,100.3947
+2022,QSL,NHS Somerset ICB,148.4,linear_regression,lag_plus_compact_5,,147.0515
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,linear_regression,lag_plus_compact_5,,142.9546
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,166.2,linear_regression,lag_plus_compact_5,,176.2362
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",134.7,linear_regression,lag_plus_compact_5,,142.1476
+2022,QUA,NHS Black Country ICB,135.7,linear_regression,lag_plus_compact_5,,141.1638
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,141.1,linear_regression,lag_plus_compact_5,,143.5969
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",148.6,linear_regression,lag_plus_compact_5,,163.4938
+2022,QVV,NHS Dorset ICB,168.8,linear_regression,lag_plus_compact_5,,173.9452
+2022,QWE,NHS South West London ICB,114.6,linear_regression,lag_plus_compact_5,,124.4087
+2022,QWO,NHS West Yorkshire ICB,137.3,linear_regression,lag_plus_compact_5,,138.9085
+2022,QWU,NHS Coventry and Warwickshire ICB,145.8,linear_regression,lag_plus_compact_5,,158.9147
+2022,QXU,NHS Surrey Heartlands ICB,137.1,linear_regression,lag_plus_compact_5,,138.9193
+2022,QYG,NHS Cheshire and Merseyside ICB,144.9,linear_regression,lag_plus_compact_5,,145.573
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.8,linear_regression,lag_plus_full_19,,115.8791
+2022,QF7,NHS South Yorkshire ICB,138.4,linear_regression,lag_plus_full_19,,119.3061
+2022,QGH,NHS Herefordshire and Worcestershire ICB,164.7,linear_regression,lag_plus_full_19,,157.0376
+2022,QH8,NHS Mid and South Essex ICB,151.3,linear_regression,lag_plus_full_19,,93.6566
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",133.0,linear_regression,lag_plus_full_19,,106.2776
+2022,QHL,NHS Birmingham and Solihull ICB,110.7,linear_regression,lag_plus_full_19,,74.722
+2022,QHM,NHS North East and North Cumbria ICB,157.3,linear_regression,lag_plus_full_19,,163.7886
+2022,QJ2,NHS Derby and Derbyshire ICB,158.3,linear_regression,lag_plus_full_19,,166.6465
+2022,QJG,NHS Suffolk and North East Essex ICB,170.4,linear_regression,lag_plus_full_19,,152.125
+2022,QJK,NHS Devon ICB,178.4,linear_regression,lag_plus_full_19,,172.9186
+2022,QJM,NHS Lincolnshire ICB,167.3,linear_regression,lag_plus_full_19,,140.159
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",132.9,linear_regression,lag_plus_full_19,,110.9244
+2022,QKK,NHS South East London ICB,117.5,linear_regression,lag_plus_full_19,,74.5308
+2022,QKS,NHS Kent and Medway ICB,135.4,linear_regression,lag_plus_full_19,,84.1993
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.5,linear_regression,lag_plus_full_19,,111.521
+2022,QMF,NHS North East London ICB,101.2,linear_regression,lag_plus_full_19,,76.4808
+2022,QMJ,NHS North Central London ICB,119.5,linear_regression,lag_plus_full_19,,95.2368
+2022,QMM,NHS Norfolk and Waveney ICB,149.3,linear_regression,lag_plus_full_19,,139.4843
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,137.2,linear_regression,lag_plus_full_19,,84.6124
+2022,QNQ,NHS Frimley ICB,123.3,linear_regression,lag_plus_full_19,,115.3051
+2022,QNX,NHS Sussex ICB,152.1,linear_regression,lag_plus_full_19,,142.6014
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",173.7,linear_regression,lag_plus_full_19,,191.9906
+2022,QOP,NHS Greater Manchester ICB,122.7,linear_regression,lag_plus_full_19,,111.0818
+2022,QOQ,NHS Humber and North Yorkshire ICB,165.8,linear_regression,lag_plus_full_19,,162.4553
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",151.7,linear_regression,lag_plus_full_19,,147.3274
+2022,QPM,NHS Northamptonshire ICB,129.7,linear_regression,lag_plus_full_19,,101.0385
+2022,QR1,NHS Gloucestershire ICB,153.4,linear_regression,lag_plus_full_19,,142.3057
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,141.5,linear_regression,lag_plus_full_19,,110.3571
+2022,QRV,NHS North West London ICB,101.1,linear_regression,lag_plus_full_19,,66.2572
+2022,QSL,NHS Somerset ICB,148.4,linear_regression,lag_plus_full_19,,142.5201
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,linear_regression,lag_plus_full_19,,129.5895
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,166.2,linear_regression,lag_plus_full_19,,140.3895
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",134.7,linear_regression,lag_plus_full_19,,121.5189
+2022,QUA,NHS Black Country ICB,135.7,linear_regression,lag_plus_full_19,,95.2566
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,141.1,linear_regression,lag_plus_full_19,,130.6182
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",148.6,linear_regression,lag_plus_full_19,,158.6114
+2022,QVV,NHS Dorset ICB,168.8,linear_regression,lag_plus_full_19,,154.0734
+2022,QWE,NHS South West London ICB,114.6,linear_regression,lag_plus_full_19,,93.1543
+2022,QWO,NHS West Yorkshire ICB,137.3,linear_regression,lag_plus_full_19,,141.596
+2022,QWU,NHS Coventry and Warwickshire ICB,145.8,linear_regression,lag_plus_full_19,,128.7406
+2022,QXU,NHS Surrey Heartlands ICB,137.1,linear_regression,lag_plus_full_19,,113.7388
+2022,QYG,NHS Cheshire and Merseyside ICB,144.9,linear_regression,lag_plus_full_19,,117.455
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.8,ridge_regression,lag_plus_compact_5,1.0,132.3851
+2022,QF7,NHS South Yorkshire ICB,138.4,ridge_regression,lag_plus_compact_5,1.0,134.8494
+2022,QGH,NHS Herefordshire and Worcestershire ICB,164.7,ridge_regression,lag_plus_compact_5,1.0,163.3307
+2022,QH8,NHS Mid and South Essex ICB,151.3,ridge_regression,lag_plus_compact_5,1.0,144.1779
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",133.0,ridge_regression,lag_plus_compact_5,1.0,135.1981
+2022,QHL,NHS Birmingham and Solihull ICB,110.7,ridge_regression,lag_plus_compact_5,1.0,113.8966
+2022,QHM,NHS North East and North Cumbria ICB,157.3,ridge_regression,lag_plus_compact_5,1.0,153.1283
+2022,QJ2,NHS Derby and Derbyshire ICB,158.3,ridge_regression,lag_plus_compact_5,1.0,162.8173
+2022,QJG,NHS Suffolk and North East Essex ICB,170.4,ridge_regression,lag_plus_compact_5,1.0,169.9628
+2022,QJK,NHS Devon ICB,178.4,ridge_regression,lag_plus_compact_5,1.0,183.7693
+2022,QJM,NHS Lincolnshire ICB,167.3,ridge_regression,lag_plus_compact_5,1.0,160.4365
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",132.9,ridge_regression,lag_plus_compact_5,1.0,136.9208
+2022,QKK,NHS South East London ICB,117.5,ridge_regression,lag_plus_compact_5,1.0,124.2612
+2022,QKS,NHS Kent and Medway ICB,135.4,ridge_regression,lag_plus_compact_5,1.0,135.6182
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.5,ridge_regression,lag_plus_compact_5,1.0,146.4114
+2022,QMF,NHS North East London ICB,101.2,ridge_regression,lag_plus_compact_5,1.0,107.2346
+2022,QMJ,NHS North Central London ICB,119.5,ridge_regression,lag_plus_compact_5,1.0,116.9612
+2022,QMM,NHS Norfolk and Waveney ICB,149.3,ridge_regression,lag_plus_compact_5,1.0,144.9944
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,137.2,ridge_regression,lag_plus_compact_5,1.0,125.2211
+2022,QNQ,NHS Frimley ICB,123.3,ridge_regression,lag_plus_compact_5,1.0,129.4441
+2022,QNX,NHS Sussex ICB,152.1,ridge_regression,lag_plus_compact_5,1.0,164.3686
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",173.7,ridge_regression,lag_plus_compact_5,1.0,185.4815
+2022,QOP,NHS Greater Manchester ICB,122.7,ridge_regression,lag_plus_compact_5,1.0,126.4562
+2022,QOQ,NHS Humber and North Yorkshire ICB,165.8,ridge_regression,lag_plus_compact_5,1.0,165.4093
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",151.7,ridge_regression,lag_plus_compact_5,1.0,150.3957
+2022,QPM,NHS Northamptonshire ICB,129.7,ridge_regression,lag_plus_compact_5,1.0,135.947
+2022,QR1,NHS Gloucestershire ICB,153.4,ridge_regression,lag_plus_compact_5,1.0,164.2251
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,141.5,ridge_regression,lag_plus_compact_5,1.0,134.9034
+2022,QRV,NHS North West London ICB,101.1,ridge_regression,lag_plus_compact_5,1.0,100.9118
+2022,QSL,NHS Somerset ICB,148.4,ridge_regression,lag_plus_compact_5,1.0,147.0428
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,ridge_regression,lag_plus_compact_5,1.0,143.0158
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,166.2,ridge_regression,lag_plus_compact_5,1.0,175.8418
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",134.7,ridge_regression,lag_plus_compact_5,1.0,142.0952
+2022,QUA,NHS Black Country ICB,135.7,ridge_regression,lag_plus_compact_5,1.0,140.9899
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,141.1,ridge_regression,lag_plus_compact_5,1.0,143.6736
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",148.6,ridge_regression,lag_plus_compact_5,1.0,163.1415
+2022,QVV,NHS Dorset ICB,168.8,ridge_regression,lag_plus_compact_5,1.0,173.4087
+2022,QWE,NHS South West London ICB,114.6,ridge_regression,lag_plus_compact_5,1.0,124.6699
+2022,QWO,NHS West Yorkshire ICB,137.3,ridge_regression,lag_plus_compact_5,1.0,138.825
+2022,QWU,NHS Coventry and Warwickshire ICB,145.8,ridge_regression,lag_plus_compact_5,1.0,158.6236
+2022,QXU,NHS Surrey Heartlands ICB,137.1,ridge_regression,lag_plus_compact_5,1.0,138.9494
+2022,QYG,NHS Cheshire and Merseyside ICB,144.9,ridge_regression,lag_plus_compact_5,1.0,145.452
+2022,QE1,NHS Lancashire and South Cumbria ICB,131.8,ridge_regression,lag_plus_full_19,10.0,133.7085
+2022,QF7,NHS South Yorkshire ICB,138.4,ridge_regression,lag_plus_full_19,10.0,132.9326
+2022,QGH,NHS Herefordshire and Worcestershire ICB,164.7,ridge_regression,lag_plus_full_19,10.0,168.2024
+2022,QH8,NHS Mid and South Essex ICB,151.3,ridge_regression,lag_plus_full_19,10.0,118.8583
+2022,QHG,"NHS Bedfordshire, Luton and Milton Keynes ICB",133.0,ridge_regression,lag_plus_full_19,10.0,119.1709
+2022,QHL,NHS Birmingham and Solihull ICB,110.7,ridge_regression,lag_plus_full_19,10.0,98.8565
+2022,QHM,NHS North East and North Cumbria ICB,157.3,ridge_regression,lag_plus_full_19,10.0,160.3089
+2022,QJ2,NHS Derby and Derbyshire ICB,158.3,ridge_regression,lag_plus_full_19,10.0,163.7917
+2022,QJG,NHS Suffolk and North East Essex ICB,170.4,ridge_regression,lag_plus_full_19,10.0,157.1362
+2022,QJK,NHS Devon ICB,178.4,ridge_regression,lag_plus_full_19,10.0,179.1964
+2022,QJM,NHS Lincolnshire ICB,167.3,ridge_regression,lag_plus_full_19,10.0,155.1303
+2022,QK1,"NHS Leicester, Leicestershire and Rutland ICB",132.9,ridge_regression,lag_plus_full_19,10.0,122.6179
+2022,QKK,NHS South East London ICB,117.5,ridge_regression,lag_plus_full_19,10.0,96.6002
+2022,QKS,NHS Kent and Medway ICB,135.4,ridge_regression,lag_plus_full_19,10.0,119.5699
+2022,QM7,NHS Hertfordshire and West Essex ICB,146.5,ridge_regression,lag_plus_full_19,10.0,131.7632
+2022,QMF,NHS North East London ICB,101.2,ridge_regression,lag_plus_full_19,10.0,90.5403
+2022,QMJ,NHS North Central London ICB,119.5,ridge_regression,lag_plus_full_19,10.0,107.3414
+2022,QMM,NHS Norfolk and Waveney ICB,149.3,ridge_regression,lag_plus_full_19,10.0,150.7025
+2022,QNC,NHS Staffordshire and Stoke-On-Trent ICB,137.2,ridge_regression,lag_plus_full_19,10.0,116.3942
+2022,QNQ,NHS Frimley ICB,123.3,ridge_regression,lag_plus_full_19,10.0,127.0381
+2022,QNX,NHS Sussex ICB,152.1,ridge_regression,lag_plus_full_19,10.0,159.8127
+2022,QOC,"NHS Shropshire, Telford and Wrekin ICB",173.7,ridge_regression,lag_plus_full_19,10.0,190.6063
+2022,QOP,NHS Greater Manchester ICB,122.7,ridge_regression,lag_plus_full_19,10.0,123.3542
+2022,QOQ,NHS Humber and North Yorkshire ICB,165.8,ridge_regression,lag_plus_full_19,10.0,170.3061
+2022,QOX,"NHS Bath and North East Somerset, Swindon and Wiltshire ICB",151.7,ridge_regression,lag_plus_full_19,10.0,153.7184
+2022,QPM,NHS Northamptonshire ICB,129.7,ridge_regression,lag_plus_full_19,10.0,123.1156
+2022,QR1,NHS Gloucestershire ICB,153.4,ridge_regression,lag_plus_full_19,10.0,151.8427
+2022,QRL,NHS Hampshire and Isle Of Wight ICB,141.5,ridge_regression,lag_plus_full_19,10.0,133.5599
+2022,QRV,NHS North West London ICB,101.1,ridge_regression,lag_plus_full_19,10.0,84.9676
+2022,QSL,NHS Somerset ICB,148.4,ridge_regression,lag_plus_full_19,10.0,153.5546
+2022,QT1,NHS Nottingham and Nottinghamshire ICB,140.3,ridge_regression,lag_plus_full_19,10.0,139.0983
+2022,QT6,NHS Cornwall and The Isles Of Scilly ICB,166.2,ridge_regression,lag_plus_full_19,10.0,165.0531
+2022,QU9,"NHS Buckinghamshire, Oxfordshire and Berkshire West ICB",134.7,ridge_regression,lag_plus_full_19,10.0,136.2977
+2022,QUA,NHS Black Country ICB,135.7,ridge_regression,lag_plus_full_19,10.0,116.6188
+2022,QUE,NHS Cambridgeshire and Peterborough ICB,141.1,ridge_regression,lag_plus_full_19,10.0,141.9226
+2022,QUY,"NHS Bristol, North Somerset and South Gloucestershire ICB",148.6,ridge_regression,lag_plus_full_19,10.0,163.8705
+2022,QVV,NHS Dorset ICB,168.8,ridge_regression,lag_plus_full_19,10.0,166.0241
+2022,QWE,NHS South West London ICB,114.6,ridge_regression,lag_plus_full_19,10.0,107.8135
+2022,QWO,NHS West Yorkshire ICB,137.3,ridge_regression,lag_plus_full_19,10.0,143.0446
+2022,QWU,NHS Coventry and Warwickshire ICB,145.8,ridge_regression,lag_plus_full_19,10.0,143.9564
+2022,QXU,NHS Surrey Heartlands ICB,137.1,ridge_regression,lag_plus_full_19,10.0,134.0814
+2022,QYG,NHS Cheshire and Merseyside ICB,144.9,ridge_regression,lag_plus_full_19,10.0,139.7059

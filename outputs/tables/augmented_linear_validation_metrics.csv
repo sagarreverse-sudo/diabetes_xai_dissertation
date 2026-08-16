@@ -1,0 +1,6 @@
+model,feature_set,alpha,feature_count,train_rows,validation_rows,mae,rmse,r2,mae_improvement_vs_persistence,rmse_improvement_vs_persistence,beats_persistence_mae,mae_improvement_vs_lag_only_linear
+ridge_regression,lag_plus_compact_5,1.0,6,84,42,4.9946,6.3625,0.885,0.2792,1.0445,True,1.8439
+linear_regression,lag_plus_compact_5,,6,84,42,5.021,6.4541,0.8817,0.2528,0.9529,True,1.8176
+linear_regression,lag_only,,1,84,42,6.8385,8.7275,0.7837,-1.5647,-1.3205,False,0.0
+ridge_regression,lag_plus_full_19,10.0,20,84,42,8.283,10.9213,0.6612,-3.0092,-3.5143,False,-1.4445
+linear_regression,lag_plus_full_19,,20,84,42,20.8804,25.0518,-0.7825,-15.6066,-17.6448,False,-14.0419
