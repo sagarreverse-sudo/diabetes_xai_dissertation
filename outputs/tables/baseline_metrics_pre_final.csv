@@ -1,0 +1,13 @@
+evaluation_scope,evaluation_stage,target_year,baseline,n,mae,rmse,r2
+overall_pre_final,development_plus_validation,2020_2022,persistence,126,8.621,11.538,0.723
+overall_pre_final,development_plus_validation,2020_2022,icb_historical_mean,126,13.055,16.699,0.42
+overall_pre_final,development_plus_validation,2020_2022,national_historical_mean,126,17.974,21.925,-0.0
+single_year,development,2020,persistence,42,14.871,16.723,0.535
+single_year,development,2020,icb_historical_mean,42,15.771,20.336,0.313
+single_year,development,2020,national_historical_mean,42,20.6,24.542,-0.001
+single_year,development,2021,persistence,42,5.717,8.054,0.867
+single_year,development,2021,icb_historical_mean,42,12.334,15.647,0.498
+single_year,development,2021,national_historical_mean,42,18.273,22.078,-0.0
+single_year,validation,2022,persistence,42,5.274,7.407,0.844
+single_year,validation,2022,icb_historical_mean,42,11.061,13.35,0.494
+single_year,validation,2022,national_historical_mean,42,15.048,18.772,-0.001
