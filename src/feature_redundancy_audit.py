@@ -1,8 +1,8 @@
 from pathlib import Path
 from itertools import combinations
 
-import numpy as np
 import pandas as pd
+from scipy.stats import spearmanr
 
 
 # --------------------------------------------------
@@ -15,7 +15,7 @@ PANEL_FILE = (
     PROJECT_ROOT
     / "data"
     / "interim"
-    / "forecasting_panel_2019_20_to_2023.csv"
+    / "forecasting_panel_2018_19_to_2023.csv"
 )
 
 OUTPUT_DIR = (
@@ -29,9 +29,41 @@ OUTPUT_DIR.mkdir(
     exist_ok=True
 )
 
+PAIRS_OUTPUT = (
+    OUTPUT_DIR
+    / "feature_redundancy_pairs.csv"
+)
+
+SUMMARY_OUTPUT = (
+    OUTPUT_DIR
+    / "feature_redundancy_summary.csv"
+)
+
+MATRIX_OUTPUT = (
+    OUTPUT_DIR
+    / "feature_spearman_matrix.csv"
+)
+
+BY_YEAR_OUTPUT = (
+    OUTPUT_DIR
+    / "feature_spearman_by_year.csv"
+)
+
 
 # --------------------------------------------------
-# 2. Common predictor set
+# 2. Final four-year predictor periods
+# --------------------------------------------------
+
+AUDIT_YEAR_ORDER = [
+    "2018_19",
+    "2019_20",
+    "2020_21",
+    "2021_22",
+]
+
+
+# --------------------------------------------------
+# 3. Final 19 common predictors
 # --------------------------------------------------
 
 FEATURES = [
@@ -40,78 +72,119 @@ FEATURES = [
     "cholesterol",
     "serum_creatinine",
     "urine_albumin",
-    "retinal_screening",
     "foot_surveillance",
     "bmi",
     "smoking",
     "all_eight_care_processes",
-    "all_nine_care_processes",
+
     "hba1c_le_48_mmol_mol_6_5pct",
     "hba1c_le_53_mmol_mol_7_0pct",
     "hba1c_le_58_mmol_mol_7_5pct",
     "hba1c_le_75_mmol_mol_9_0pct",
     "hba1c_le_86_mmol_mol_10_0pct",
+
     "blood_pressure_le_140_80",
+
     "primary_prevention_on_statins_without_cvd_history",
     "secondary_prevention_on_statins_with_cvd_history",
     "combined_prevention_on_statins",
+
     "all_three_treatment_targets",
 ]
 
 
 # --------------------------------------------------
-# 3. Load forecasting panel
+# 4. Correlation thresholds
+#
+# These are audit flags, NOT automatic
+# feature-removal rules.
+# --------------------------------------------------
+
+HIGH_POOLED_THRESHOLD = 0.90
+
+VERY_HIGH_POOLED_THRESHOLD = 0.95
+
+CONSISTENT_WITHIN_YEAR_THRESHOLD = 0.80
+
+POOLED_ONLY_WEAK_THRESHOLD = 0.60
+
+
+# --------------------------------------------------
+# 5. Load final forecasting panel
 # --------------------------------------------------
 
 if not PANEL_FILE.exists():
     raise FileNotFoundError(
-        f"Forecasting panel not found: "
-        f"{PANEL_FILE}"
+        f"Forecasting panel not found: {PANEL_FILE}"
     )
 
 
-panel = pd.read_csv(
-    PANEL_FILE
-)
+panel = pd.read_csv(PANEL_FILE)
 
 
 print(
-    f"Forecasting panel shape: "
-    f"{panel.shape}"
-)
-
-print(
-    f"Unique ICBs: "
-    f"{panel['icb_code'].nunique()}"
-)
-
-print(
-    f"Target years: "
-    f"{sorted(panel['target_year'].unique())}"
+    f"Forecasting panel shape: {panel.shape}"
 )
 
 
 # --------------------------------------------------
-# 4. Validate predictor structure
+# 6. Validate final panel
 # --------------------------------------------------
 
-missing_features = (
-    set(FEATURES)
+required_columns = {
+    "audit_year",
+    "icb_code",
+} | set(FEATURES)
+
+
+missing_columns = (
+    required_columns
     - set(panel.columns)
 )
 
 
-if missing_features:
+if missing_columns:
     raise RuntimeError(
-        "Missing predictors: "
-        f"{sorted(missing_features)}"
+        "Missing required columns: "
+        f"{sorted(missing_columns)}"
     )
 
 
-if len(FEATURES) != 21:
+if len(panel) != 168:
     raise RuntimeError(
-        f"Expected 21 features, "
-        f"found {len(FEATURES)}."
+        f"Expected 168 rows, found {len(panel)}."
+    )
+
+
+if len(FEATURES) != 19:
+    raise RuntimeError(
+        f"Expected 19 predictors, found {len(FEATURES)}."
+    )
+
+
+panel["audit_year"] = (
+    panel["audit_year"]
+    .astype("string")
+    .str.strip()
+)
+
+
+panel["icb_code"] = (
+    panel["icb_code"]
+    .astype("string")
+    .str.strip()
+)
+
+
+observed_years = set(
+    panel["audit_year"].unique()
+)
+
+
+if observed_years != set(AUDIT_YEAR_ORDER):
+    raise RuntimeError(
+        "Unexpected predictor periods: "
+        f"{sorted(observed_years)}"
     )
 
 
@@ -122,245 +195,399 @@ if panel[FEATURES].isna().any().any():
 
 
 print(
-    "\nFeature structure check: PASSED"
+    "Final predictor set validation: PASSED"
 )
 
 
 # --------------------------------------------------
-# 5. Correlation matrices
-#
-# We use both:
-#
-# Pearson  -> linear association
-# Spearman -> rank/monotonic association
-#
-# Spearman is particularly useful here because
-# many percentage indicators are not guaranteed
-# to have perfectly linear relationships.
+# 7. Check 42 ICBs per year
 # --------------------------------------------------
 
-pearson_matrix = (
-    panel[FEATURES]
-    .corr(method="pearson")
-)
-
-spearman_matrix = (
-    panel[FEATURES]
-    .corr(method="spearman")
+rows_per_year = (
+    panel
+    .groupby("audit_year")
+    .size()
+    .reindex(AUDIT_YEAR_ORDER)
 )
 
 
-# --------------------------------------------------
-# 6. Within-year correlation matrices
-#
-# This prevents us from relying only on pooled
-# correlations that could be driven by year effects.
-# --------------------------------------------------
-
-target_years = sorted(
-    panel["target_year"]
-    .unique()
+icbs_per_year = (
+    panel
+    .groupby("audit_year")["icb_code"]
+    .nunique()
+    .reindex(AUDIT_YEAR_ORDER)
 )
 
 
-within_year_spearman = {}
+print(
+    "\nRows per predictor year:"
+)
+
+print(
+    rows_per_year.to_string()
+)
 
 
-for year in target_years:
+if not (
+    rows_per_year == 42
+).all():
+    raise RuntimeError(
+        "Every year must contain 42 rows."
+    )
 
-    year_data = panel[
-        panel["target_year"] == year
-    ]
 
-    within_year_spearman[year] = (
-        year_data[FEATURES]
-        .corr(method="spearman")
+if not (
+    icbs_per_year == 42
+).all():
+    raise RuntimeError(
+        "Every year must contain 42 ICBs."
     )
 
 
 # --------------------------------------------------
-# 7. Build pairwise redundancy audit
+# 8. Confirm same ICB membership
+# --------------------------------------------------
+
+year_sets = {
+    year: set(
+        panel.loc[
+            panel["audit_year"] == year,
+            "icb_code"
+        ]
+    )
+    for year in AUDIT_YEAR_ORDER
+}
+
+
+reference_set = (
+    year_sets[
+        AUDIT_YEAR_ORDER[0]
+    ]
+)
+
+
+for year in AUDIT_YEAR_ORDER[1:]:
+
+    if year_sets[year] != reference_set:
+        raise RuntimeError(
+            f"ICB membership differs in {year}."
+        )
+
+
+print(
+    "Same 42 ICBs across all four years: PASSED"
+)
+
+
+# --------------------------------------------------
+# 9. Number of feature pairs
+#
+# 19 choose 2 = 171
+# --------------------------------------------------
+
+feature_pairs = list(
+    combinations(
+        FEATURES,
+        2
+    )
+)
+
+
+print(
+    f"\nPredictors: {len(FEATURES)}"
+)
+
+print(
+    f"Feature pairs: {len(feature_pairs)}"
+)
+
+
+if len(feature_pairs) != 171:
+    raise RuntimeError(
+        "Expected exactly 171 feature pairs."
+    )
+
+
+# --------------------------------------------------
+# 10. Pooled Spearman matrix
+#
+# This uses all 168 ICB-year observations.
+#
+# Important:
+# pooled correlation can sometimes be inflated
+# by common year-to-year movements.
+# Therefore we ALSO calculate correlations
+# separately inside each year.
+# --------------------------------------------------
+
+pooled_matrix = (
+    panel[FEATURES]
+    .corr(
+        method="spearman"
+    )
+)
+
+
+if pooled_matrix.isna().any().any():
+    raise RuntimeError(
+        "Missing values found in pooled "
+        "Spearman matrix."
+    )
+
+
+# --------------------------------------------------
+# 11. Calculate pairwise pooled and
+#     within-year correlations
 # --------------------------------------------------
 
 pair_rows = []
 
+by_year_rows = []
 
-for feature_1, feature_2 in combinations(
-    FEATURES,
-    2
-):
 
-    pooled_pearson = (
-        pearson_matrix.loc[
-            feature_1,
-            feature_2
-        ]
-    )
+for feature_a, feature_b in feature_pairs:
 
-    pooled_spearman = (
-        spearman_matrix.loc[
-            feature_1,
-            feature_2
-        ]
+    # ----------------------------------------------
+    # Pooled correlation
+    # ----------------------------------------------
+
+    pooled_rho, pooled_p = spearmanr(
+        panel[feature_a],
+        panel[feature_b]
     )
 
 
-    year_correlations = {}
+    yearly_rhos = {}
 
 
-    for year in target_years:
+    # ----------------------------------------------
+    # Correlation separately within each year
+    # ----------------------------------------------
 
-        rho = (
-            within_year_spearman[year]
-            .loc[
-                feature_1,
-                feature_2
+    for year in AUDIT_YEAR_ORDER:
+
+        year_data = panel.loc[
+            panel["audit_year"] == year,
+            [
+                feature_a,
+                feature_b,
             ]
+        ]
+
+
+        if len(year_data) != 42:
+            raise RuntimeError(
+                f"{year}: expected 42 rows."
+            )
+
+
+        rho, p_value = spearmanr(
+            year_data[feature_a],
+            year_data[feature_b]
         )
 
-        year_correlations[year] = rho
+
+        if pd.isna(rho):
+            raise RuntimeError(
+                f"Undefined Spearman correlation "
+                f"for {feature_a} vs {feature_b} "
+                f"in {year}."
+            )
 
 
-    abs_year_correlations = [
-        abs(value)
-        for value
-        in year_correlations.values()
-        if pd.notna(value)
+        yearly_rhos[year] = rho
+
+
+        by_year_rows.append({
+            "feature_a": feature_a,
+            "feature_b": feature_b,
+            "audit_year": year,
+            "spearman_rho": rho,
+            "abs_spearman_rho": abs(rho),
+            "p_value": p_value,
+        })
+
+
+    # ----------------------------------------------
+    # Within-year stability statistics
+    # ----------------------------------------------
+
+    yearly_abs_rhos = [
+        abs(
+            yearly_rhos[year]
+        )
+        for year in AUDIT_YEAR_ORDER
     ]
 
 
-    mean_abs_within_year = (
-        np.mean(abs_year_correlations)
-        if abs_year_correlations
-        else np.nan
+    min_within_abs = min(
+        yearly_abs_rhos
     )
 
 
-    max_abs_within_year = (
-        np.max(abs_year_correlations)
-        if abs_year_correlations
-        else np.nan
+    max_within_abs = max(
+        yearly_abs_rhos
     )
 
 
-    # Count how many individual years have
-    # a very strong relationship.
-    years_above_080 = sum(
-        abs(value) >= 0.80
-        for value
-        in year_correlations.values()
-        if pd.notna(value)
+    median_within_abs = (
+        pd.Series(
+            yearly_abs_rhos
+        )
+        .median()
+    )
+
+
+    mean_within_abs = (
+        pd.Series(
+            yearly_abs_rhos
+        )
+        .mean()
     )
 
 
     # ----------------------------------------------
-    # Diagnostic redundancy flags
-    #
-    # These do NOT automatically remove variables.
+    # Descriptive redundancy flags
     # ----------------------------------------------
 
-    high_pooled_correlation = (
-        abs(pooled_spearman) >= 0.85
-    )
-
-    persistent_within_year_correlation = (
-        years_above_080 >= 2
-    )
-
-    very_high_correlation = (
-        abs(pooled_spearman) >= 0.95
+    high_pooled_flag = (
+        abs(pooled_rho)
+        >= HIGH_POOLED_THRESHOLD
     )
 
 
-    potential_redundancy = (
-        high_pooled_correlation
-        or
-        persistent_within_year_correlation
+    very_high_pooled_flag = (
+        abs(pooled_rho)
+        >= VERY_HIGH_POOLED_THRESHOLD
     )
 
 
-    row = {
-        "feature_1": feature_1,
-        "feature_2": feature_2,
-
-        "pooled_pearson":
-            pooled_pearson,
-
-        "pooled_spearman":
-            pooled_spearman,
-
-        "abs_pooled_spearman":
-            abs(pooled_spearman),
-
-        "mean_abs_within_year_spearman":
-            mean_abs_within_year,
-
-        "max_abs_within_year_spearman":
-            max_abs_within_year,
-
-        "years_abs_spearman_ge_0_80":
-            years_above_080,
-
-        "high_pooled_corr_flag":
-            high_pooled_correlation,
-
-        "persistent_within_year_corr_flag":
-            persistent_within_year_correlation,
-
-        "very_high_corr_flag":
-            very_high_correlation,
-
-        "potential_redundancy_flag":
-            potential_redundancy,
-    }
+    consistently_strong_flag = (
+        high_pooled_flag
+        and
+        min_within_abs
+        >= CONSISTENT_WITHIN_YEAR_THRESHOLD
+    )
 
 
-    for year in target_years:
+    # A high pooled correlation but at least one
+    # weak within-year relationship suggests the
+    # pooled relationship may partly reflect a
+    # common time/year effect.
+    pooled_year_effect_caution_flag = (
+        high_pooled_flag
+        and
+        min_within_abs
+        < POOLED_ONLY_WEAK_THRESHOLD
+    )
 
-        row[
-            f"spearman_target_{year}"
-        ] = year_correlations[year]
+
+    pair_rows.append({
+        "feature_a": feature_a,
+        "feature_b": feature_b,
+
+        "pooled_spearman": pooled_rho,
+        "abs_pooled_spearman": abs(pooled_rho),
+        "pooled_p_value": pooled_p,
+
+        "spearman_2018_19":
+            yearly_rhos["2018_19"],
+
+        "spearman_2019_20":
+            yearly_rhos["2019_20"],
+
+        "spearman_2020_21":
+            yearly_rhos["2020_21"],
+
+        "spearman_2021_22":
+            yearly_rhos["2021_22"],
+
+        "min_within_year_abs_spearman":
+            min_within_abs,
+
+        "median_within_year_abs_spearman":
+            median_within_abs,
+
+        "mean_within_year_abs_spearman":
+            mean_within_abs,
+
+        "max_within_year_abs_spearman":
+            max_within_abs,
+
+        "high_pooled_correlation_flag":
+            high_pooled_flag,
+
+        "very_high_pooled_correlation_flag":
+            very_high_pooled_flag,
+
+        "consistently_strong_redundancy_flag":
+            consistently_strong_flag,
+
+        "pooled_year_effect_caution_flag":
+            pooled_year_effect_caution_flag,
+    })
 
 
-    pair_rows.append(row)
-
-
-pairwise = pd.DataFrame(
+pairs = pd.DataFrame(
     pair_rows
 )
 
 
-# --------------------------------------------------
-# 8. Round numeric columns
-# --------------------------------------------------
-
-numeric_columns = (
-    pairwise
-    .select_dtypes(
-        include="number"
-    )
-    .columns
+by_year = pd.DataFrame(
+    by_year_rows
 )
 
 
-pairwise[numeric_columns] = (
-    pairwise[numeric_columns]
+# --------------------------------------------------
+# 12. Round numerical columns
+# --------------------------------------------------
+
+for dataframe in [
+    pairs,
+    by_year,
+]:
+
+    numeric_columns = (
+        dataframe
+        .select_dtypes(
+            include="number"
+        )
+        .columns
+    )
+
+
+    dataframe[
+        numeric_columns
+    ] = (
+        dataframe[
+            numeric_columns
+        ]
+        .round(3)
+    )
+
+
+pooled_matrix = (
+    pooled_matrix
     .round(3)
 )
 
 
 # --------------------------------------------------
-# 9. Sort strongest relationships first
+# 13. Sort strongest relationships first
 # --------------------------------------------------
 
-pairwise = (
-    pairwise
+pairs = (
+    pairs
     .sort_values(
-        [
-            "potential_redundancy_flag",
+        by=[
+            "consistently_strong_redundancy_flag",
+            "very_high_pooled_correlation_flag",
+            "high_pooled_correlation_flag",
             "abs_pooled_spearman",
         ],
         ascending=[
+            False,
+            False,
             False,
             False,
         ]
@@ -370,58 +597,160 @@ pairwise = (
 
 
 # --------------------------------------------------
-# 10. Print strongest pooled correlations
+# 14. Build per-feature redundancy summary
+#
+# This shows how often each predictor appears
+# in strong correlation pairs.
 # --------------------------------------------------
 
-print(
-    "\n========================================"
-)
-
-print(
-    "STRONGEST PREDICTOR CORRELATIONS"
-)
-
-print(
-    "========================================"
-)
+summary_rows = []
 
 
-strongest = pairwise[
-    [
-        "feature_1",
-        "feature_2",
-        "pooled_pearson",
-        "pooled_spearman",
-        "mean_abs_within_year_spearman",
-        "years_abs_spearman_ge_0_80",
+for feature in FEATURES:
+
+    related = pairs[
+        (
+            pairs["feature_a"] == feature
+        )
+        |
+        (
+            pairs["feature_b"] == feature
+        )
     ]
-].head(30)
 
 
-print(
-    strongest.to_string(
-        index=False
+    high_pooled_count = int(
+        related[
+            "high_pooled_correlation_flag"
+        ]
+        .sum()
     )
+
+
+    very_high_count = int(
+        related[
+            "very_high_pooled_correlation_flag"
+        ]
+        .sum()
+    )
+
+
+    consistent_count = int(
+        related[
+            "consistently_strong_redundancy_flag"
+        ]
+        .sum()
+    )
+
+
+    year_effect_count = int(
+        related[
+            "pooled_year_effect_caution_flag"
+        ]
+        .sum()
+    )
+
+
+    max_pooled_abs = (
+        related[
+            "abs_pooled_spearman"
+        ]
+        .max()
+    )
+
+
+    summary_rows.append({
+        "feature": feature,
+
+        "pairs_with_abs_pooled_rho_ge_0_90":
+            high_pooled_count,
+
+        "pairs_with_abs_pooled_rho_ge_0_95":
+            very_high_count,
+
+        "consistently_strong_pairs":
+            consistent_count,
+
+        "pooled_year_effect_caution_pairs":
+            year_effect_count,
+
+        "maximum_abs_pooled_spearman":
+            max_pooled_abs,
+    })
+
+
+summary = pd.DataFrame(
+    summary_rows
+)
+
+
+summary[
+    "maximum_abs_pooled_spearman"
+] = (
+    summary[
+        "maximum_abs_pooled_spearman"
+    ]
+    .round(3)
+)
+
+
+summary = (
+    summary
+    .sort_values(
+        by=[
+            "consistently_strong_pairs",
+            "pairs_with_abs_pooled_rho_ge_0_95",
+            "pairs_with_abs_pooled_rho_ge_0_90",
+            "maximum_abs_pooled_spearman",
+        ],
+        ascending=False
+    )
+    .reset_index(drop=True)
 )
 
 
 # --------------------------------------------------
-# 11. Potential redundant pairs
+# 15. Overall redundancy counts
 # --------------------------------------------------
 
-redundant_pairs = pairwise[
-    pairwise[
-        "potential_redundancy_flag"
+high_pooled = pairs[
+    pairs[
+        "high_pooled_correlation_flag"
     ]
-].copy()
+]
 
+
+very_high_pooled = pairs[
+    pairs[
+        "very_high_pooled_correlation_flag"
+    ]
+]
+
+
+consistent = pairs[
+    pairs[
+        "consistently_strong_redundancy_flag"
+    ]
+]
+
+
+year_effect_caution = pairs[
+    pairs[
+        "pooled_year_effect_caution_flag"
+    ]
+]
+
+
+# --------------------------------------------------
+# 16. Print audit summary
+# --------------------------------------------------
 
 print(
     "\n========================================"
 )
 
 print(
-    "POTENTIALLY REDUNDANT PAIRS"
+    "FOUR-YEAR FEATURE REDUNDANCY AUDIT"
 )
 
 print(
@@ -429,235 +758,287 @@ print(
 )
 
 
-if len(redundant_pairs) == 0:
+print(
+    f"\nTotal feature pairs: "
+    f"{len(pairs)}"
+)
+
+print(
+    f"Pairs with pooled |Spearman| >= 0.90: "
+    f"{len(high_pooled)}"
+)
+
+print(
+    f"Pairs with pooled |Spearman| >= 0.95: "
+    f"{len(very_high_pooled)}"
+)
+
+print(
+    "Pairs with pooled |Spearman| >= 0.90 "
+    "AND every yearly |Spearman| >= 0.80: "
+    f"{len(consistent)}"
+)
+
+print(
+    "High pooled pairs with at least one "
+    "yearly |Spearman| < 0.60: "
+    f"{len(year_effect_caution)}"
+)
+
+
+# --------------------------------------------------
+# 17. Display high pooled correlations
+# --------------------------------------------------
+
+print(
+    "\nPairs with pooled |Spearman| >= 0.90:"
+)
+
+
+if len(high_pooled) == 0:
 
     print(
-        "No predictor pairs triggered "
-        "the redundancy rules."
+        "None"
     )
 
 else:
 
     print(
-        redundant_pairs[
+        high_pooled[
             [
-                "feature_1",
-                "feature_2",
+                "feature_a",
+                "feature_b",
                 "pooled_spearman",
-                "spearman_target_2021",
-                "spearman_target_2022",
-                "spearman_target_2023",
-                "years_abs_spearman_ge_0_80",
-                "very_high_corr_flag",
+                "spearman_2018_19",
+                "spearman_2019_20",
+                "spearman_2020_21",
+                "spearman_2021_22",
+                "min_within_year_abs_spearman",
+                "consistently_strong_redundancy_flag",
+                "pooled_year_effect_caution_flag",
             ]
-        ].to_string(
+        ]
+        .to_string(
             index=False
         )
     )
 
 
 # --------------------------------------------------
-# 12. Feature-level redundancy summary
+# 18. Display consistently strong redundancy
 # --------------------------------------------------
 
-feature_summary_rows = []
+print(
+    "\nConsistently strong redundancy pairs:"
+)
 
 
-for feature in FEATURES:
+if len(consistent) == 0:
 
-    related = pairwise[
-        (
-            pairwise["feature_1"]
-            == feature
-        )
-        |
-        (
-            pairwise["feature_2"]
-            == feature
-        )
-    ].copy()
+    print(
+        "None"
+    )
 
+else:
 
-    flagged = related[
-        related[
-            "potential_redundancy_flag"
+    print(
+        consistent[
+            [
+                "feature_a",
+                "feature_b",
+                "pooled_spearman",
+                "min_within_year_abs_spearman",
+                "median_within_year_abs_spearman",
+            ]
         ]
-    ]
-
-
-    # Find strongest partner
-    strongest_row = (
-        related
-        .sort_values(
-            "abs_pooled_spearman",
-            ascending=False
+        .to_string(
+            index=False
         )
-        .iloc[0]
     )
 
 
-    if (
-        strongest_row["feature_1"]
-        == feature
-    ):
+# --------------------------------------------------
+# 19. Display possible pooled year-effect pairs
+# --------------------------------------------------
 
-        strongest_partner = (
-            strongest_row["feature_2"]
-        )
-
-    else:
-
-        strongest_partner = (
-            strongest_row["feature_1"]
-        )
-
-
-    feature_summary_rows.append({
-        "feature": feature,
-
-        "redundant_partner_count":
-            len(flagged),
-
-        "strongest_partner":
-            strongest_partner,
-
-        "max_abs_pooled_spearman":
-            strongest_row[
-                "abs_pooled_spearman"
-            ],
-    })
-
-
-feature_summary = pd.DataFrame(
-    feature_summary_rows
+print(
+    "\nPooled-correlation year-effect caution pairs:"
 )
 
 
-feature_summary = (
-    feature_summary
-    .sort_values(
-        [
-            "redundant_partner_count",
-            "max_abs_pooled_spearman",
-        ],
-        ascending=[
-            False,
-            False,
-        ]
+if len(year_effect_caution) == 0:
+
+    print(
+        "None"
     )
-    .reset_index(drop=True)
+
+else:
+
+    print(
+        year_effect_caution[
+            [
+                "feature_a",
+                "feature_b",
+                "pooled_spearman",
+                "spearman_2018_19",
+                "spearman_2019_20",
+                "spearman_2020_21",
+                "spearman_2021_22",
+            ]
+        ]
+        .to_string(
+            index=False
+        )
+    )
+
+
+# --------------------------------------------------
+# 20. Most redundancy-connected features
+# --------------------------------------------------
+
+print(
+    "\nFeature redundancy summary:"
 )
 
 
 print(
-    "\n========================================"
-)
-
-print(
-    "FEATURE-LEVEL REDUNDANCY SUMMARY"
-)
-
-print(
-    "========================================"
-)
-
-
-print(
-    feature_summary.to_string(
+    summary.to_string(
         index=False
     )
 )
 
 
 # --------------------------------------------------
-# 13. Overall counts
+# 21. Interpretation
 # --------------------------------------------------
 
 print(
-    "\n========================================"
-)
+    """
+Interpretation:
+- Pooled Spearman uses all 168 ICB-year rows.
 
-print(
-    "REDUNDANCY AUDIT SUMMARY"
-)
+- Within-year Spearman evaluates the
+  relationship across the 42 ICBs separately
+  in each historical period.
 
-print(
-    "========================================"
-)
+- A consistently strong pair is much stronger
+  evidence of genuine feature redundancy than
+  a high pooled correlation alone.
 
+- A high pooled correlation with weak
+  within-year correlation may partly reflect
+  common year-to-year shifts rather than true
+  redundancy between the measures.
 
-print(
-    f"Total predictors: "
-    f"{len(FEATURES)}"
-)
+- These flags are diagnostic only.
+  No predictor should be removed solely because
+  it crosses one correlation threshold.
 
-print(
-    f"Total predictor pairs: "
-    f"{len(pairwise)}"
-)
-
-print(
-    f"Potentially redundant pairs: "
-    f"{len(redundant_pairs)}"
-)
-
-print(
-    "Pairs with pooled "
-    "|Spearman| >= 0.95: "
-    f"{pairwise['very_high_corr_flag'].sum()}"
+- Final feature selection must also consider
+  temporal stability, clinical meaning,
+  information leakage, model complexity and
+  validation performance.
+""".strip()
 )
 
 
 # --------------------------------------------------
-# 14. Save outputs
+# 22. Final validation
 # --------------------------------------------------
 
-PAIR_OUTPUT = (
-    OUTPUT_DIR
-    / "feature_redundancy_pairs.csv"
-)
-
-SUMMARY_OUTPUT = (
-    OUTPUT_DIR
-    / "feature_redundancy_summary.csv"
-)
-
-SPEARMAN_OUTPUT = (
-    OUTPUT_DIR
-    / "feature_spearman_matrix.csv"
-)
+if len(pairs) != 171:
+    raise RuntimeError(
+        f"Expected 171 pair rows, "
+        f"found {len(pairs)}."
+    )
 
 
-pairwise.to_csv(
-    PAIR_OUTPUT,
-    index=False
-)
+if len(summary) != 19:
+    raise RuntimeError(
+        f"Expected 19 summary rows, "
+        f"found {len(summary)}."
+    )
 
-feature_summary.to_csv(
-    SUMMARY_OUTPUT,
-    index=False
-)
 
-spearman_matrix.to_csv(
-    SPEARMAN_OUTPUT
-)
+if pooled_matrix.shape != (
+    19,
+    19,
+):
+    raise RuntimeError(
+        "Expected a 19 x 19 "
+        "correlation matrix."
+    )
+
+
+if len(by_year) != (
+    171 * 4
+):
+    raise RuntimeError(
+        f"Expected {171 * 4} "
+        "within-year rows, "
+        f"found {len(by_year)}."
+    )
+
+
+if pairs.isna().any().any():
+    raise RuntimeError(
+        "Missing values detected "
+        "in redundancy pair output."
+    )
+
+
+if summary.isna().any().any():
+    raise RuntimeError(
+        "Missing values detected "
+        "in redundancy summary."
+    )
 
 
 print(
     "\nFeature redundancy audit: PASSED"
 )
 
+
+# --------------------------------------------------
+# 23. Save outputs
+# --------------------------------------------------
+
+pairs.to_csv(
+    PAIRS_OUTPUT,
+    index=False
+)
+
+
+summary.to_csv(
+    SUMMARY_OUTPUT,
+    index=False
+)
+
+
+pooled_matrix.to_csv(
+    MATRIX_OUTPUT
+)
+
+
+by_year.to_csv(
+    BY_YEAR_OUTPUT,
+    index=False
+)
+
+
 print(
-    f"Pairwise audit saved to: "
-    f"{PAIR_OUTPUT}"
+    f"Saved pairs to: {PAIRS_OUTPUT}"
 )
 
 print(
-    f"Feature summary saved to: "
-    f"{SUMMARY_OUTPUT}"
+    f"Saved summary to: {SUMMARY_OUTPUT}"
 )
 
 print(
-    f"Spearman matrix saved to: "
-    f"{SPEARMAN_OUTPUT}"
+    f"Saved matrix to: {MATRIX_OUTPUT}"
+)
+
+print(
+    f"Saved within-year correlations to: "
+    f"{BY_YEAR_OUTPUT}"
 )
