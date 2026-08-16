@@ -1,0 +1,6 @@
+model,feature_set,feature_count,train_rows,validation_rows,mae,rmse,r2,mae_improvement_vs_persistence,rmse_improvement_vs_persistence,beats_persistence_mae
+persistence,lag_only,1,0,42,5.2738,7.407,0.8442,0.0,0.0,False
+gradient_boosting,lag_plus_compact_5,6,84,42,7.4326,8.958,0.7721,-2.1588,-1.551,False
+random_forest,lag_plus_compact_5,6,84,42,10.1529,12.1841,0.5784,-4.879,-4.7771,False
+random_forest,compact_5,5,84,42,14.8198,18.3671,0.0419,-9.546,-10.9601,False
+gradient_boosting,compact_5,5,84,42,22.4176,25.6791,-0.8728,-17.1438,-18.2721,False
