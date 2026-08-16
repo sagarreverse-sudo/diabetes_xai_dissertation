@@ -1,0 +1,5 @@
+candidate,model,feature_set,alpha,validation_year,mae,rmse,r2,selected,selection_interpretation
+Persistence benchmark,persistence,lagged_ckd_only,,2022,5.274,7.407,0.844,False,Strong and temporally robust benchmark; must remain the primary comparator.
+Selected augmented Ridge,ridge_regression,lag_plus_compact_5,1.0,2022,4.9946,6.3625,0.885,True,Lowest designated 2022 validation MAE among evaluated primary candidates; parsimonious and interpretable. Improvement over persistence was not temporally consistent at the earlier rolling origin.
+Best residual-correction model,residual_ridge,compact_5,10.0,2022,5.0488,6.661,0.874,False,Competitive 2022 validation performance but not superior to selected augmented Ridge and not temporally robust.
+Best nonlinear model,gradient_boosting,lag_plus_compact_5,,2022,7.4326,8.958,0.7721,False,Did not outperform persistence; greater complexity was not justified.
