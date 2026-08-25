@@ -1,0 +1,6 @@
+figure,title,png_file,pdf_file,purpose
+Figure 1,Observed and forecast 2023 CKD risk,fig_01_2023_observed_vs_forecasts.png,fig_01_2023_observed_vs_forecasts.pdf,Compares observed 2023 CKD rates with persistence and locked Ridge forecasts.
+Figure 2,ICB-level absolute-error comparison,fig_02_2023_paired_absolute_errors.png,fig_02_2023_paired_absolute_errors.pdf,Shows paired forecast errors for persistence and Ridge across all 42 ICBs.
+Figure 3,Global SHAP importance,fig_03_global_shap_importance.png,fig_03_global_shap_importance.pdf,Summarises the contribution of each locked predictor to 2023 Ridge forecasts.
+Figure 4,CKD temporal dynamics,fig_04_ckd_temporal_dynamics.png,fig_04_ckd_temporal_dynamics.pdf,Displays the systematic 2019-2020 level shift and subsequent CKD distribution.
+Figure 5,Temporal out-of-sample model performance,fig_05_temporal_model_performance.png,fig_05_temporal_model_performance.pdf,Shows that the Ridge improvement seen in 2022 did not generalise across forecast origins.
