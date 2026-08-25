@@ -1,0 +1,5 @@
+Candidate,Model,Feature set,Alpha,MAE,RMSE,R²,Selected for final test
+Persistence benchmark,persistence,lagged_ckd_only,,5.274,7.407,0.844,False
+Selected augmented Ridge,ridge_regression,lag_plus_compact_5,1.0,4.995,6.362,0.885,True
+Best residual-correction model,residual_ridge,compact_5,10.0,5.049,6.661,0.874,False
+Best nonlinear model,gradient_boosting,lag_plus_compact_5,,7.433,8.958,0.772,False

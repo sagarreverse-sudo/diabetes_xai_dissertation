@@ -1,0 +1,7 @@
+table,title,file,recommended_section
+Table 1,Temporal validation design,dissertation_table_01_validation_design.csv,Methodology
+Table 2,Pre-test model selection,dissertation_table_02_model_selection.csv,Results - Model selection
+Table 3,Temporal out-of-sample model performance,dissertation_table_03_temporal_performance.csv,Results - Robustness
+Table 4,Untouched 2023 final-test performance,dissertation_table_04_final_test.csv,Results - Final evaluation
+Table 5,Final sensitivity and bootstrap analysis,dissertation_table_05_sensitivity.csv,Results - Sensitivity analysis
+Table 6,Global SHAP feature importance,dissertation_table_06_shap_importance.csv,Results - Explainability

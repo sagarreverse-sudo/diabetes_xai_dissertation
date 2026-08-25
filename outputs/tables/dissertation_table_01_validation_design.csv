@@ -1,0 +1,5 @@
+Stage,Target year(s),ICB-year rows,Unique ICBs,Purpose
+Development training,"2020, 2021",84,42,Initial model fitting and development
+Model validation,2022,42,42,Model comparison and hyperparameter selection
+Final untouched test,2023,42,42,Single independent out-of-sample evaluation
+Final model refit,"2020, 2021, 2022",126,42,Refit locked model before 2023 evaluation

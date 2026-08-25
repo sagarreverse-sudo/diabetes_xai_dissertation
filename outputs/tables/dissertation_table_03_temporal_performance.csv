@@ -1,0 +1,4 @@
+Evaluation year,Evaluation type,Persistence MAE,Locked Ridge MAE,Persistence - Ridge MAE,Better model
+2021,Retrospective rolling-origin audit,5.717,14.471,-8.754,Persistence
+2022,Designated validation,5.274,4.995,0.279,Ridge
+2023,Untouched final test,5.838,7.446,-1.608,Persistence

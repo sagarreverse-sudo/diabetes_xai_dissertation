@@ -1,0 +1,7 @@
+Rank,Predictor,Mean absolute SHAP,Importance share (%),Standardized Ridge coefficient,Coefficient direction
+1,Previous-year CKD rate,13.945,71.8,21.484,positive
+2,Blood pressure ≤140/80,2.419,12.5,-2.067,negative
+3,Serum creatinine care process,1.061,5.5,-4.383,negative
+4,Urine albumin care process,0.984,5.1,2.104,positive
+5,HbA1c ≤58 mmol/mol,0.744,3.8,-0.744,negative
+6,Combined statin prevention,0.257,1.3,-0.505,negative
