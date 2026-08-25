@@ -1,0 +1,3 @@
+analysis,observed_difference,bootstrap_median_difference,ci_2_5_percent,ci_97_5_percent,bootstrap_probability_ridge_better,bootstrap_probability_persistence_better
+unweighted_mae_difference,-1.608,-1.6109,-2.6251,-0.6154,0.0007,0.9993
+population_weighted_mae_difference,-1.5849,-1.5889,-2.6418,-0.5429,0.0015,0.9985

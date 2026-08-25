@@ -1,0 +1,3 @@
+analysis,persistence_mae,ridge_mae,persistence_rmse,ridge_rmse,mae_difference_persistence_minus_ridge
+unweighted,5.8381,7.4461,7.3853,9.1171,-1.608
+population_weighted,5.3932,6.9781,6.9726,8.5154,-1.5849
