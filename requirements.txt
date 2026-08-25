@@ -104,3 +104,4 @@ widgetsnbextension==4.0.15
 scikit-learn==1.9.0
 shap==0.51.0
 matplotlib==3.11.1
+streamlit==1.62.0
