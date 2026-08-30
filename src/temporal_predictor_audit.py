@@ -13,8 +13,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 PANEL_FILE = (
     PROJECT_ROOT
     / "data"
-    / "interim"
-    / "forecasting_panel_2018_19_to_2023.csv"
+    / "processed"
+    / "ckd_forecasting_master.csv"
 )
 
 OUTPUT_DIR = (

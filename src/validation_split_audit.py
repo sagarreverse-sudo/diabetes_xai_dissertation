@@ -12,8 +12,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 PANEL_FILE = (
     PROJECT_ROOT
     / "data"
-    / "interim"
-    / "forecasting_panel_2018_19_to_2023.csv"
+    / "processed"
+    / "ckd_forecasting_master.csv"
 )
 
 OUTPUT_DIR = (
@@ -591,6 +591,7 @@ print(
 
 NON_FEATURE_COLUMNS = {
     "audit_year",
+    "predictor_period",
     "target_year",
     "icb_code",
     "icb_name",
@@ -598,6 +599,8 @@ NON_FEATURE_COLUMNS = {
     "ckd_cases",
     "diabetes_population",
     "ckd_risk_rate_per_1000",
+    "target_ckd_rate_per_1000",
+    "previous_year_ckd_rate",
 }
 
 

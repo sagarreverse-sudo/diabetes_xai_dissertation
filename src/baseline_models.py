@@ -34,8 +34,10 @@ OUTPUT_DIR.mkdir(
 
 
 PANEL_FILE = (
-    INTERIM_DIR
-    / "forecasting_panel_2018_19_to_2023.csv"
+    PROJECT_ROOT
+    / "data"
+    / "processed"
+    / "ckd_forecasting_master.csv"
 )
 
 CKD_FILE = (
