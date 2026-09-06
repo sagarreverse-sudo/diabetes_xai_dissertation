@@ -1,5 +1,11 @@
 # Explainable Machine Learning for Forecasting Diabetic Complications Using NHS Data
 
+## Live Dashboard
+
+The deployed Streamlit dashboard is available here:
+
+https://diabetes-ckd-forecasting.streamlit.app/
+
 ## About this project
 
 This repository contains the practical work for my MSc Data Science dissertation.
