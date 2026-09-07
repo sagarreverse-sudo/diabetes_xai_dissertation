@@ -1781,8 +1781,8 @@ elif page == "Validation & Robustness":
 
     rolling_required = {
         "evaluation_year",
-        "persistence_mae",
-        "augmented_mae",
+        "model",
+        "mae",
     }
 
 
@@ -1799,11 +1799,16 @@ elif page == "Validation & Robustness":
             rolling[
                 [
                     "evaluation_year",
-                    "persistence_mae",
-                    "augmented_mae",
+                    "model",
+                    "mae",
                 ]
             ]
-            .copy()
+            .pivot(
+                index="evaluation_year",
+                columns="model",
+                values="mae",
+            )
+            .reset_index()
         )
 
 
@@ -1812,10 +1817,10 @@ elif page == "Validation & Robustness":
                 "evaluation_year":
                     "Year",
 
-                "persistence_mae":
+                "persistence":
                     "Persistence",
 
-                "augmented_mae":
+                "ridge_lag_plus_compact_5":
                     "Locked Ridge",
             }
         )
